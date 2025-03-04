@@ -1,6 +1,6 @@
 # FlavorFolio The Ultimate Recipe Sharing Platform​
 
-*"Where Culinary Creativity Meets Community Connection"*​
+_"Where Culinary Creativity Meets Community Connection"_​
 ​
 
 ## Key Features:​
