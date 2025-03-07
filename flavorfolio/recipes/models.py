@@ -44,3 +44,11 @@ class Comment(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     content = models.CharField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    recipes = models.ManyToManyField(Recipe)
+
+    def __str__(self):
+        return self.name
