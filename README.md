@@ -37,6 +37,31 @@ FlavorFolio is powered by:
 - ⏳ **Initial Development Phase** (Setting up repo, virtual environments, and basic features)  
 - 🔜 **Feature Expansion** (Tagging, user profiles, admin controls, and more!)  
 
+## Development
+
+### Requirements
+
+To install the required packages, run the following command:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Database setup
+
+To setup the database, run the following commands:
+
+```bash
+python manage.py makemigrations recipes
+python manage.py migrate
+```
+
+Then use the auto-populate script (coming soon™) to populate the database with some initial data:
+
+```bash
+python population_script.py
+```
+
 ## 🤝 Contributing  
 
 Contributions are welcome! If you're interested in helping build FlavorFolio, feel free to fork the repo, submit a PR, or open an issue. Let's cook up something amazing together!  
