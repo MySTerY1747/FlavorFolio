@@ -1,49 +1,41 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-#
-#
-
-# class Category(models.Model):
-# name = models.CharField(max_length=128, unique=True)
-# def __str__(self):
-# return self.name
-# class Page(models.Model):
-# category = models.ForeignKey(Category, on_delete=models.CASCADE)
-# title = models.CharField(max_length=128)
-# url = models.URLField()
-# views = models.IntegerField(default=0)
-# def __str__(self):
-# return self.title
+#  INFO: For all models, the primary key is automatically created by Django
 
 
 class UserProfile(models.Model):
+    #  username, email, and password are handeld by the Django User model
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to="profile_images", blank=True)
-    bio = models.CharField(blank=True)
+    bio = models.CharField(max_length=500, blank=True)
 
     def __str__(self):
-        return self.user.username
+        return f"Profile of {self.user.username}"
 
 
 class Recipe(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=128)
-    ingredients = models.CharField()
-    instructions = models.CharField()
+    ingredients = models.TextField()
+    instructions = models.TextField()
     image = models.ImageField(upload_to="recipe_images", blank=True)
     upload_date = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return f"{self.title} Recipe object"
+        return f"{self.title}"
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    content = models.CharField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recipes")
+    recipe = models.ForeignKey(
+        Recipe, on_delete=models.CASCADE, related_name="comments"
+    )
+    content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Comment by {self.user.username} on {self.recipe.title}"
 
 
 class Tag(models.Model):
@@ -51,4 +43,4 @@ class Tag(models.Model):
     recipes = models.ManyToManyField(Recipe)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
