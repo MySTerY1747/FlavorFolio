@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from recipes.forms import RecipeForm
 
 
 def index(request):
@@ -12,3 +13,16 @@ def index(request):
 
 def register(request):
     return render(request, 'recipes/register.html',context={})
+
+def upload_recipe(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST)
+        if form.is_valid():
+            recipe = form.save(commit=False)
+            recipe.user = request.user
+            recipe.save()
+            return redirect('/recipes/<recipe_id>')
+        else:
+            print(form.errors)
+    responce = render(request, "recipes/upload_recipe.html", {'form': form})
+    return responce
