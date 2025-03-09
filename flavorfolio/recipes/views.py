@@ -14,6 +14,9 @@ def index(request):
 def register(request):
     return render(request, 'recipes/register.html',context={})
 
+def profile(request):
+    return render(request, 'recipes/profile.html',context={})
+
 def upload_recipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST)
