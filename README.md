@@ -75,18 +75,26 @@ pip install -r requirements.txt
 
 ### Database setup
 
-To setup the database, run the following commands:
+- To setup the database, run the following commands:
 
 ```bash
 python manage.py makemigrations recipes
 python manage.py migrate
 ```
 
-Then use the auto-populate script (coming soon™) to populate the database with some initial data:
+- Then use the auto-populate script to populate the database with some initial data:
 
 ```bash
 python population_script.py
 ```
+
+- Consider adding a superuser to access the Django admin panel:
+
+```bash
+python manage.py createsuperuser
+```
+
+- You can then access the admin panel at `http://127.0.0.1:8000/admin/`
 
 ---  
 
@@ -94,9 +102,9 @@ python population_script.py
 
 Whenever you commit your chnages, make sure to update the project roadmap below.
 
-## 1. Project Setup & Repository Management
+## 1. Project Setup & Repository Management  ✅ - Completed on 07/03 by Stefanos
 
-- **Environment & Version Control:**  ✅ - Completed on 07/03 by Stefanos
+- **Environment & Version Control:**
   - Initialize a Git repository and set up a virtual environment.
   - Create a new Django project (e.g., “flavorfolio”) with a basic structure.
   - Generate a `requirements.txt` file using `pip freeze` and add it to the repository.
@@ -132,7 +140,7 @@ Whenever you commit your chnages, make sure to update the project roadmap below.
 - **Migrations:**  
   - Create and apply migrations to generate the corresponding database tables.
 
-## 5. Population Script Development
+## 5. Population Script Development ✅ - Completed on 09/03 by Stefanos
 
 - **Script Purpose:**  
   - Write a Python script (e.g., `population_script.py`) that uses Django’s ORM to seed your database with sample data.
