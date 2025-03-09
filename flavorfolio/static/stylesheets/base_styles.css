@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 150px; 
+  background-color: khaki;
+  border-style: double;
+  border-radius: 2em;
+  border-width: 0.4em;
+  }
+
+body {
+  font-family: Arial, sans-serif;
+}

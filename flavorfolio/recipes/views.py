@@ -7,11 +7,8 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     context_dict = {"body_block": "This is the index page.", "title_block": "Index"}
-    response = render(request, "recipes/base.html", context=context_dict)
+    response = render(request, "recipes/index.html", context=context_dict)
     return response
 
-
-def about(request):
-    context_dict = {"body_block": "This is the about page.", "title_block": "About"}
-    response = render(request, "recipes/base.html", context=context_dict)
-    return response
+def register(request):
+    return render(request, 'recipes/register.html',context={})

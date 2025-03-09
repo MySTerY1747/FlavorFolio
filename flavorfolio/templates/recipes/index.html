@@ -1,0 +1,67 @@
+{% extends "recipes/base.html" %}
+{% load static %}
+
+{% block title_block %}
+FlavourFolio - Homepage
+{% endblock %}
+
+{% block header_block %}
+<img src="{% static 'images/headers/homepage_header.png'%}"/>
+{% endblock %}
+
+{% block body_block %}
+<link rel="stylesheet" href="{% static 'stylesheets/homepage_styles.css' %}">
+<div class="container">
+    <div class="main-content">
+        <!-- Left Column -->
+        <div class="left-section">
+            <div class="welcome-box">
+                <h1>Welcome to FlavourFolio!</h1>
+            </div>
+
+            <div class="recipes-box">
+                <h3>New Recipes:</h3>
+                <ul class="recipe-list">
+                    <li>
+                        <a href="">Recipe1</a>
+                        <img src="{% static 'images/recipe1.jpg' %}" alt="Recipe1 Image">
+                    </li>
+                    <li>
+                        <a href="">Recipe2</a>
+                        <img src="{% static 'images/recipe2.jpg' %}" alt="Recipe2 Image">
+                    </li>
+                    <li>
+                        <a href="">Recipe3</a>
+                        <img src="{% static 'images/recipe3.jpg' %}" alt="Recipe3 Image">
+                    </li>
+                    <li>
+                        <a href="">Recipe4</a>
+                        <img src="{% static 'images/recipe4.jpg' %}" alt="Recipe4 Image">
+                    </li>
+                    <li>
+                        <a href="">Recipe5</a>
+                        <img src="{% static 'images/recipe5.jpg' %}" alt="Recipe5 Image">
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-section">
+            <div class="buttons">
+
+                <a href="{% url 'recipes:register' %}">
+                <button class="action-btn">Search</button>
+                </a>
+
+                <button class="action-btn">Sign Up</button>
+                <button class="action-btn">Login</button>
+            </div>
+
+        <img src="{% static 'images/food.jpg' %}" class="image">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
