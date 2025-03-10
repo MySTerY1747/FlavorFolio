@@ -9,6 +9,20 @@ header {
   border-width: 0.4em;
   }
 
-body {
-  font-family: Arial, sans-serif;
+div{
+  box-shadow: 0em 0.25em 0.5em black;
 }
+
+button {
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline;
+  }
+  
+  button:hover {
+    background-color: forestgreen;
+  }

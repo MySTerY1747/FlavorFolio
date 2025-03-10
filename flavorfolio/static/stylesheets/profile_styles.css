@@ -1,44 +1,30 @@
 .profile-container {
     max-width: 80%;
     margin: 1em auto;
-    padding: 20px;
+    padding: 1em;
     background-color: antiquewhite;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
   }
   
   .profile-picture-and-name ,.bio,.my-recipes{
     flex:1;
-    margin:0 10px;
-    border-radius: 1px;
+    margin:0.5em;
+    border-radius: 0.05em;
     border-style: double;
     padding:0.5em
     
   }
   
-  
-  button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: inline;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-
   .button-container{
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 0.5em;
+    margin-top: 1em;
     justify-content: center
 }
+  
 
 h4{
     margin-top: 0;

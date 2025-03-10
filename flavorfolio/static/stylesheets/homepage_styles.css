@@ -23,18 +23,17 @@ h1 {
     width:100%;
     float:center;
     background: khaki;
-    padding: 5px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 0.25em;
+    border-radius: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 .recipes-box {
     background-color: antiquewhite;
-    padding: 20px;
+    padding: 1em;
     width: 100%;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5em;
+    box-shadow: 0px 0.25em 0.5em ;
 }
 
 .recipe-list {
@@ -47,21 +46,21 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #333;
-    border-top: 1px solid #333;
+    padding: 0.5em;
+    border-bottom: 0.05em solid dimgrey;
+    border-top: 0.05em solid dimgrey;
     background: inherit;
 }
 
 .recipe-list a {
     font-size: 1.5rem;
     text-decoration: underline;
-    color: #333;
+    color: dimgrey;
     font-weight: bold;
 }
 
 .recipe-list a:hover {
-    color: #ff5733;
+    color: tomato;
 }
 
 .recipe-list img {
@@ -89,7 +88,7 @@ h1 {
     padding: 15px;
     font-size: 1.2rem;
     background: antiquewhite;
-    color: #333;
+    color: dimgrey;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -102,7 +101,6 @@ h1 {
 .image {
     width: 100%;
     height: auto;
-    background: #ddd;
     display: flex;
     align-items: center;
     justify-content: center;
