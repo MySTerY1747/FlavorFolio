@@ -9,9 +9,6 @@ header {
   border-width: 0.4em;
   }
 
-div{
-  box-shadow: 0em 0.25em 0.5em black;
-}
 
 button {
     padding: 10px 20px;
@@ -25,4 +22,8 @@ button {
   
   button:hover {
     background-color: forestgreen;
+  }
+
+  body{
+    font-family: Verdana, sans-serif;
   }
