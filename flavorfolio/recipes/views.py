@@ -18,6 +18,7 @@ def profile(request):
     return render(request, 'recipes/profile.html',context={})
 
 def upload_recipe(request):
+    form = RecipeForm()
     if request.method == 'POST':
         form = RecipeForm(request.POST)
         if form.is_valid():

@@ -1,4 +1,4 @@
-{% extends "recipes/base.html" %}
+{% extends 'recipes/base.html' %}
 {% load static %}
 
 {% block title_block %}
@@ -55,7 +55,10 @@ FlavourFolio - Homepage
                 <button class="action-btn">Search</button>
                 </a>
 
+                <a href="{% url 'recipes:register' %}">
                 <button class="action-btn">Sign Up</button>
+                </a>
+
                 <button class="action-btn">Login</button>
             </div>
 
