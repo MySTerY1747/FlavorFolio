@@ -11,17 +11,15 @@ header {
 
 
 button {
-    padding: 10px 20px;
-    background-color: green;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 0.5em 1em;
+    background-color: khaki;
+    color:black;
+    border-radius: 0.25em;
     display: inline;
   }
   
   button:hover {
-    background-color: forestgreen;
+    background-color: beige
   }
 
   body{

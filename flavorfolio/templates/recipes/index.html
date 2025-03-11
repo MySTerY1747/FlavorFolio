@@ -13,7 +13,6 @@ FlavourFolio - Homepage
 <link rel="stylesheet" href="{% static 'stylesheets/homepage_styles.css' %}">
 <div class="container">
     <div class="main-content">
-        <!-- Left Column -->
         <div class="left-section">
             <div class="welcome-box">
                 <h1>Welcome to FlavourFolio!</h1>
@@ -47,19 +46,18 @@ FlavourFolio - Homepage
             
         </div>
 
-        <!-- Right Column -->
         <div class="right-section">
             <div class="buttons">
 
                 <a href="{% url 'recipes:register' %}">
-                <button class="action-btn">Search</button>
+                <button class="homepage-button">Search</button>
                 </a>
 
                 <a href="{% url 'recipes:register' %}">
-                <button class="action-btn">Sign Up</button>
+                <button class="homepage-button">Sign Up</button>
                 </a>
 
-                <button class="action-btn">Login</button>
+                <button class="homepage-button">Login</button>
             </div>
 
         <img src="{% static 'images/food.jpg' %}" class="image">

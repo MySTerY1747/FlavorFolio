@@ -1,10 +1,9 @@
-.profile-container {
+.profile-box {
     max-width: 80%;
     margin: 1em auto;
     padding: 1em;
     background-color: antiquewhite;
     border-radius: 0.5em;
-    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
   }
@@ -18,7 +17,7 @@
     
   }
   
-  .button-container{
+  .button-box{
     display: flex;
     gap: 0.5em;
     margin-top: 1em;

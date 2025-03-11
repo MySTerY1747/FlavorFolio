@@ -1,0 +1,40 @@
+.form-box{
+    max-width: 80%;
+    margin: 1em auto;
+    padding: 1em;
+    background-color: antiquewhite;
+    border-radius: 0.5em;
+}
+
+.recipe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25em; 
+    border-top: black;
+    border-width: 0.01em;
+}
+
+.help-text{
+    flex:0.5;
+    font-size: 1em;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    flex: 2;
+    padding: 0.5em;
+}
+
+button[type="submit"]{
+    display: block;     
+    margin: 1em auto;
+    padding: 0.5em 5em;
+}

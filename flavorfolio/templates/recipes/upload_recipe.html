@@ -6,18 +6,25 @@
 {% endblock %}
 
 {% block header_block %}
-    Upload Recipe
+    <img src="{% static 'images/headers/upload_recipe_header.png' %}">
 {% endblock %}
 
 {% block body_block %}
-    <form id="recipe_form" method="post" action="/recipe/upload_recipe/">
-        {% csrf_token %}
-        {% for field in form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text }}
-            {{ field }}
-            <br>
-        {% endfor %}
-        <input type="submit" name="submit" value="Upload Recipe" />
-    </form>
+    <link rel="stylesheet" href="{% static 'stylesheets/upload_recipe_styles.css' %}">
+    <div class="form-box">
+        <h1>Enter Recipe Details:</h1>
+        <form class="recipe-form" method="post" action="/recipe/upload_recipe/">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+                <div class="form-field">
+                    <span class="help-text">{{ field.help_text }}</span> 
+                    {{ field }} 
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            
+            <button type="submit">Submit</button>
+        </form>
+
+    </div>
 {% endblock %}

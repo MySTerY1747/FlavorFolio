@@ -11,9 +11,12 @@ class RecipeForm(forms.ModelForm):
     instructions = forms.CharField(widget=forms.Textarea,
                                    help_text="Enter Instructions: ")
     
+    tags = forms.CharField(widget=forms.Textarea,
+                                   help_text="Enter Recipe Tags (separated by commas): ")
+    
     image = forms.ImageField(help_text="Upload Recipe Image: ",
                              required=False)
 
     class Meta:
         model = Recipe
-        fields = ('title', 'ingredients', 'instructions', 'image')
+        fields = ('title', 'ingredients', 'instructions','tags','image')
