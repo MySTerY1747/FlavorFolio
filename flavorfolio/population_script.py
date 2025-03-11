@@ -1,5 +1,6 @@
 import os
 import django
+from django.core.files import File
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "flavorfolio.settings")
 django.setup()
@@ -31,18 +32,21 @@ recipes = [
         "title": "Fasolada (Traditional Greek Bean Soup)",
         "ingredients": "- 1 onion\n - 1 clove garlic\n - 1 carrot\n - Tomato purée\n - White beans\n - Olive oil\n - Salt\n - Pepper\n - Bay leaf\n - Rosemary\n - 1 vegetable stock cube\n - 1 apple\n - Water\n - Vinegar",
         "instructions": "- Finely chop the onion, garlic, and carrot.\n - Add them to a pot with olive oil and sauté.\n - Stir in tomato purée, salt, pepper, bay leaf, and rosemary.\n - Add a vegetable stock cube and a whole apple.\n - Fill the pot with water until ingredients are covered.\n - Simmer on low heat for 1.5 hours.\n - Adjust seasoning with more salt, pepper, olive oil, and a splash of vinegar before serving.",
+        "image_path": "population_script_images/fasolada.jpg",
     },
     {
         "user_index": 1,
         "title": "Greek Salad",
         "ingredients": "- 3 tomatoes\n - 1 cucumber\n - half an onion\n - Feta\n - Olive oil\n - Honey\n - Vinegar\n - Olives\n - Green pepper ",
         "instructions": " - Cut the tomatoes into nice pieces, removing the stem\n - Add salt and mix\n - In a bowl, add some honey and vinegar to make a sweet and sour sauce\n - Cut the cucumber into strips, checking first whether or not to remove the peel\n - Cut the side of a pepper into strips\n - Cut half an onion into thin slices, and dip them in the bowl, with the sauce\n - Add a few olives\n - Put a nice piece of feta cheese on top\n - Add pepper, oregano\n - Finally, pour olive oil EVERYWHERE. ",
+        "image_path": "population_script_images/xoriatiki-salata.jpg",
     },
     {
         "user_index": 2,
         "title": "Kokkinisti Tigania Manitarion (Greek Mushroom Sauté in Tomato Sauce)",
         "ingredients": "- Olive oil\n - 1 onion\n - 1 red pepper\n - 1 green pepper\n - 1 clove garlic\n - Salt\n - Pepper\n - 500g mushrooms\n - Tomato purée\n - Red wine\n - Oregano\n - Thyme\n - Sugar",
         "instructions": "- Chop the onion and add it to a pan with olive oil.\n - Slice the red and green peppers and add them to the pan.\n - Add a clove of garlic and stir.\n - Add thyme and mix well.\n - While sautéing, chop the mushrooms.\n - Remove everything from the pan and set aside.\n - Add more olive oil and cook the mushrooms until they develop a nice color.\n - Return the sautéed vegetables to the pan.\n - Season with salt, pepper, and other spices.\n - Add tomato purée, red wine, oregano, and a little sugar.\n - Let it simmer briefly, then serve.",
+        "image_path": "population_script_images/tigania-manitarion-kokkinisti.jpg",
     },
 ]
 
@@ -90,13 +94,15 @@ def add_user(user_dict):
 
 
 def add_recipe(recipe_dict):
-    recipe = Recipe.objects.get_or_create(
-        user=User.objects.all()[recipe_dict["user_index"]],
-        title=recipe_dict["title"],
-        ingredients=recipe_dict["ingredients"],
-        instructions=recipe_dict["instructions"],
-    )[0]
-    recipe.save()
+    with open(recipe_dict["image_path"], "rb") as f:
+        recipe = Recipe.objects.get_or_create(
+            user=User.objects.all()[recipe_dict["user_index"]],
+            title=recipe_dict["title"],
+            ingredients=recipe_dict["ingredients"],
+            instructions=recipe_dict["instructions"],
+            image=File(f, name=os.path.basename(recipe_dict["image_path"])),
+        )[0]
+        recipe.save()
     return recipe
 
 
