@@ -9,7 +9,6 @@ urlpatterns = [
     path("register/", views.register, name="register"),
     path("profile/", views.profile, name="profile"),
     path("recipe/<recipe_id>/", views.recipe, name="recipe"),
-    path("profile/",views.profile, name = "profile"),
     path("profile/edit_bio",views.edit_bio,name="edit_bio"),
     path("profile/upload_new_profile_picture",views.upload_new_profile_picture,name="upload_new_profile_picture")
 ]
