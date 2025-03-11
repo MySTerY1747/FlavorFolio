@@ -27,8 +27,12 @@ def register(request):
 
 def recipe(request, recipe_id):
     try:
-        recipe = Recipe.objects.get(id=recipe_id)
-        return render(request, "recipes/recipe.html", context={"recipe": recipe})
+        print(recipe_id)
+        current_recipe = Recipe.objects.get(id=recipe_id)
+        print(current_recipe)
+        return render(
+            request, "recipes/recipe.html", context={"recipe": current_recipe}
+        )
     except Exception as e:
         return HttpResponse("404. Recipe not found.")
 

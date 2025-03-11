@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title_block %}
-FlavourFolio - {% recipe.title %}
+FlavourFolio - {{ recipe.title }}
 {% endblock %}
 
 {% block header_block %}
@@ -12,5 +12,8 @@ FlavourFolio - {% recipe.title %}
 {% block body_block %}
 
 <p>{{ recipe.title }}</p>
+<img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
+<p>{{ recipe.ingredients }}</p>
+<p>{{ recipe.instructions }}</p>
 
 {% endblock %}
