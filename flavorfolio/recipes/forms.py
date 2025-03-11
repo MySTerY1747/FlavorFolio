@@ -1,5 +1,5 @@
 from django import forms
-from recipes.models import Recipe, Comment, Tag
+from recipes.models import Recipe, Comment, Tag, UserProfile
 
 class RecipeForm(forms.ModelForm):
     title = forms.CharField(max_length=128,
@@ -20,3 +20,18 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = ('title', 'ingredients', 'instructions','tags','image')
+
+class EditBioForm(forms.ModelForm):
+    bio = forms.CharField(widget=forms.Textarea,
+                          help_text="Enter New Bio:")
+
+    class Meta:
+        model = UserProfile
+        fields = ('bio',)
+
+class UploadProfilePictureForm(forms.ModelForm):
+    image = forms.ImageField(help_text="Upload New Profile Picture: ")
+
+    class Meta:
+        model = UserProfile
+        fields = ('image',)

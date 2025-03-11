@@ -25,3 +25,19 @@ button {
   body{
     font-family: Verdana, sans-serif;
   }
+
+.form-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25em; 
+    border-top: black;
+    border-width: 0.01em;
+    flex: 2;
+    padding: 0.5em;
+}
+
+.help-text{
+  flex:1;
+  font-size: 1em;
+}

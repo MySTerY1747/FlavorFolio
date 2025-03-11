@@ -10,7 +10,9 @@
 {% endblock %}
 
 {% block body_block %}
+  
   <link rel="stylesheet" href="{% static 'stylesheets/profile_styles.css' %}">
+
   <div class="profile-box">
 
     <div class="profile-picture-and-name">
@@ -37,8 +39,8 @@
     
   </div>
   <div class="button-box">
-    <button type="submit" name="edit_bio">Edit Bio</button>
-    <button type="submit" name="update_profile">Upload New Profile Picture</button>
+    <a href="{% url 'recipes:edit_bio' %}"><button type="button">Edit Bio</button></a>
+    <a href="{% url 'recipes:upload_new_profile_picture' %}"><button type="button">Upload New Profile Picture</button></a>
     <button type="submit" name="upload_recipe">Upload New Recipe</button>
 </div>
 {% endblock %}
