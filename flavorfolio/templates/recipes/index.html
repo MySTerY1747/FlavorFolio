@@ -21,26 +21,10 @@ FlavourFolio - Homepage
             <div class="recipes-box">
                 <h3>New Recipes:</h3>
                 <ul class="recipe-list">
-                    <li>
-                        <a href="">Recipe1</a>
-                        <img src="{% static 'images/recipe1.jpg' %}" alt="Recipe1 Image">
-                    </li>
-                    <li>
-                        <a href="">Recipe2</a>
-                        <img src="{% static 'images/recipe2.jpg' %}" alt="Recipe2 Image">
-                    </li>
-                    <li>
-                        <a href="">Recipe3</a>
-                        <img src="{% static 'images/recipe3.jpg' %}" alt="Recipe3 Image">
-                    </li>
-                    <li>
-                        <a href="">Recipe4</a>
-                        <img src="{% static 'images/recipe4.jpg' %}" alt="Recipe4 Image">
-                    </li>
-                    <li>
-                        <a href="">Recipe5</a>
-                        <img src="{% static 'images/recipe5.jpg' %}" alt="Recipe5 Image">
-                    </li>
+                  {% for recipe in recipes %}
+                    <li><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a></li>
+                    <img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
+                  {% endfor %}
                 </ul>
             </div>
             

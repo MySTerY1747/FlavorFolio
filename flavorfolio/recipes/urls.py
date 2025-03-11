@@ -7,5 +7,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("upload_recipe", views.upload_recipe, name="upload_recipe"),
     path("register/", views.register, name="register"),
-    path("profile/",views.profile, name = "profile")
+    path("profile/", views.profile, name="profile"),
+    path("recipe/<recipe_id>/", views.recipe, name="recipe"),
 ]

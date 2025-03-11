@@ -1,0 +1,16 @@
+{% extends 'recipes/base.html' %}
+{% load static %}
+
+{% block title_block %}
+FlavourFolio - {% recipe.title %}
+{% endblock %}
+
+{% block header_block %}
+<img src="{% static 'images/headers/homepage_header.png'%}"/>
+{% endblock %}
+
+{% block body_block %}
+
+<p>{{ recipe.title }}</p>
+
+{% endblock %}
