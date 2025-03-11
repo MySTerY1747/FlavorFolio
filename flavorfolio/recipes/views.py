@@ -54,3 +54,9 @@ def upload_recipe(request):
             print(form.errors)
     responce = render(request, "recipes/upload_recipe.html", {'form': form})
     return responce
+
+def edit_bio(request):
+    responce = render(request, "recipes/edit_bio.html", context={})
+
+def upload_new_profile_picture(request):
+    responce = render(request, "recipes/upload_new_profile_picture.html", context={})
