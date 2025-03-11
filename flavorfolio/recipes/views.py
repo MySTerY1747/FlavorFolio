@@ -27,7 +27,7 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return redirect("recipes/profile.html")
+            return redirect("/recipes/profile/")
         else:
             form = RegistrationForm()
     return render(request, "recipes/register.html", {'form': form})
@@ -68,3 +68,20 @@ def edit_bio(request):
 
 def upload_new_profile_picture(request):
     responce = render(request, "recipes/upload_new_profile_picture.html", context={})
+
+def user_login(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect("/recipes/index/")
+            else:
+                return HttpResponse("Account is disabled.")
+        else:
+            return HttpResponse("Invalid login details.")
+    else:
+        return render(request, 'recipes/login.html')

@@ -21,10 +21,10 @@ FlavourFolio - Homepage
             <div class="recipes-box">
                 <h3>New Recipes:</h3>
                 <ul class="recipe-list">
-                  {% for recipe in recipes %}
-                    <li><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a></li>
-                    <img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
-                  {% endfor %}
+                    {% for recipe in recipes %}
+                        <li><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a></li>
+                        <img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
+                    {% endfor %}
                 </ul>
             </div>
             
@@ -41,7 +41,9 @@ FlavourFolio - Homepage
                 <button class="homepage-button">Sign Up</button>
                 </a>
 
+                <a href="{% url 'recipes:login' %}">
                 <button class="homepage-button">Login</button>
+                </a>
             </div>
 
         <img src="{% static 'images/food.jpg' %}" class="image">

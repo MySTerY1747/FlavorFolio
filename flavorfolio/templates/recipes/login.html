@@ -1,0 +1,24 @@
+{% extends 'recipes/base.html' %}  
+{% load static %}
+{% block title_block %}
+    Login
+{% endblock %}
+
+{% block header_block %}
+<img src="{% static 'images/headers/login_header.png' %}" alt="Login Header">
+{% endblock %}
+
+{% block body_block %}
+  <link rel="stylesheet" href="{% static 'stylesheets/login_styles.css' %}">
+  <div class="register-box">
+    <h2>Login Here:</h2>
+    <form method="post" action="{% url 'recipes:login' %}">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" />
+        <br />
+        <input type="submit" value="Login" />
+    </form>
+  </div>
+{% endblock %}
