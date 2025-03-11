@@ -10,9 +10,11 @@
 {% block body_block %}
   <link rel="stylesheet" href="{% static 'stylesheets/register_styles.css' %}">
   <div class="register-box">
-    <h2>Register Here</h2>
-    <form method="post" action="{% url 'recipes:register' %}">
-      
+    <h2>Register Here:</h2>
+    <form method="post" action="{% url 'recipes:register' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Register</button>
     </form>
   </div>
 {% endblock %}

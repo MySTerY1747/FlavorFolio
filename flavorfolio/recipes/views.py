@@ -22,7 +22,15 @@ def index(request):
 
 
 def register(request):
-    return render(request, "recipes/register.html", context={})
+    form = RegistrationForm()
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect("recipes/profile.html")
+        else:
+            form = RegistrationForm()
+    return render(request, "recipes/register.html", {'form': form})
 
 
 def recipe(request, recipe_id):

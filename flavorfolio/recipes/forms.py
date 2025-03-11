@@ -1,5 +1,6 @@
 from django import forms
 from recipes.models import Recipe, Comment, Tag, UserProfile
+from django.contrib.auth.models import User
 
 class RecipeForm(forms.ModelForm):
     title = forms.CharField(max_length=128,
@@ -28,6 +29,15 @@ class EditBioForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('bio',)
+
+class RegistrationForm(forms.ModelForm):
+    email = forms.EmailField(required=True)
+    
+    password = forms.CharField(widget=forms.PasswordInput())
+    
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
 
 class UploadProfilePictureForm(forms.ModelForm):
     image = forms.ImageField(help_text="Upload New Profile Picture: ")
