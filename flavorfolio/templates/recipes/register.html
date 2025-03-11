@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{% static 'stylesheets/register_styles.css' %}">
   <div class="register-box">
     <h2>Register Here:</h2>
-    <form method="post" action="{% url 'recipes:register' %}" enctype="multipart/form-data">
+    <form method="post" action="{% url 'recipes:register' %}">
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit">Register</button>
