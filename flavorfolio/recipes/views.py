@@ -84,3 +84,11 @@ def user_login(request):
             return HttpResponse("Invalid login details.")
     else:
         return render(request, 'recipes/login.html')
+    
+def search(request):
+    search_query = request.GET.get('search_query', '')
+    if search_query:
+        results = Recipe.objects.filter(title=search_query)
+    else:
+        results = None
+    return render(request, 'recipes/search.html', {'results': results, 'search_quesry': search_query})

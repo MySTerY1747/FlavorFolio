@@ -1,0 +1,27 @@
+{% extends 'recipes/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    FlavourFolio - {{ search.search_query }}
+{% endblock %}
+
+{% block header_block %}
+    <img src="{% static 'images/headers/search_header.png' %}" alt="Search Header">
+{% endblock %}
+
+{% block body_block %}
+    <form method="GET" action="{% url 'recipes:search' %}">
+        <input type="text" name="search_query" placeholder="Search Recipes..." value="{{ search_query }}">
+        <button type="submit">Search</button>
+    </form>
+
+{% if results %}
+    <ul>
+        {% for recipe in results %}
+            <li>{{ recipe.title }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+{% endblock %}
