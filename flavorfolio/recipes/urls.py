@@ -13,4 +13,5 @@ urlpatterns = [
     path("profile/upload_new_profile_picture/", views.upload_new_profile_picture, name="upload_new_profile_picture"),
     path("login/", views.user_login, name="login"),
     path("search/", views.search, name="search"),
+    path("tags/<tag_name>/", views.tag, name="tag"),
 ]

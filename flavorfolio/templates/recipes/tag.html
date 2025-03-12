@@ -1,0 +1,21 @@
+{% extends 'recipes/base.html' %}
+{% load static %}
+
+{% block title_block %}
+FlavourFolio - {{ tag.name }} tag
+{% endblock %}
+
+{% block header_block %}
+<img src="{% static 'images/headers/homepage_header.png'%}"/>
+{% endblock %}
+
+{% block body_block %}
+
+<p>{{ tag.name }}</p>
+
+<ul>
+  {% for recipe in tag.recipes.all %}
+    <li><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a></li>
+  {% endfor %}
+
+{% endblock %}

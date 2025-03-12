@@ -108,3 +108,7 @@ def search(request):
         {"results": results, "search_quesry": search_query},
     )
 
+def tag(request, tag_name):
+    tag = Tag.objects.get(name=tag_name)
+    recipes = tag.recipes.all()
+    return render(request, "recipes/tag.html", {"tag": tag, "recipes": recipes})
