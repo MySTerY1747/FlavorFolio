@@ -50,7 +50,17 @@ FlavourFolio - Homepage
             </div>
 
         <img src="{% static 'images/food.jpg' %}" class="image">
+
+        <div class="tags">
+
+          <ul>
+            <h3>Tags:</h3>
+            {% for tag in tags %}
+              <li><a href="{% url 'recipes:tag' tag.name %}">{{ tag.name }}</a></li>
+            {% endfor %}
+
         </div>
+
     </div>
 </div>
 

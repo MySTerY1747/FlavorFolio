@@ -14,9 +14,10 @@ def index(request):
     list_of_recipes = sorted(
         Recipe.objects.all(), key=lambda x: x.upload_date, reverse=True
     )
-    print(list_of_recipes)
+    five_tags = Tag.objects.all()[:5]
 
     context_dict["recipes"] = list_of_recipes
+    context_dict["tags"] = five_tags
     response = render(request, "recipes/index.html", context=context_dict)
     return response
 
