@@ -16,4 +16,9 @@ FlavourFolio - {{ recipe.title }}
 <p>{{ recipe.ingredients }}</p>
 <p>{{ recipe.instructions }}</p>
 
+<ul>
+  {% for comment in recipe.comments.all %}
+    <li>{{ comment.user.username }} - {{ comment.content }}</li>
+  {% endfor %}
+
 {% endblock %}

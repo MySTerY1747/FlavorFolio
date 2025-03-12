@@ -23,33 +23,34 @@ def index(request):
 
 def register(request):
     form = RegistrationForm()
-    if request.method == 'POST':
+    if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
             return redirect("/recipes/profile/")
         else:
             form = RegistrationForm()
-    return render(request, "recipes/register.html", {'form': form})
+    return render(request, "recipes/register.html", {"form": form})
 
 
 def recipe(request, recipe_id):
     try:
-        print(recipe_id)
         current_recipe = Recipe.objects.get(id=recipe_id)
-        print(current_recipe)
+        current_recipe_comments = Comment.objects.filter(recipe=current_recipe)
         return render(
-            request, "recipes/recipe.html", context={"recipe": current_recipe}
+            request,
+            "recipes/recipe.html",
+            context={"recipe": current_recipe, "comments": current_recipe_comments},
         )
     except Exception as e:
         return HttpResponse("404. Recipe not found.")
 
 
-def profile(request,user_id):
-    user_profile=UserProfile.objects.get(user_id=user_id)
+def profile(request, user_id):
+    user_profile = UserProfile.objects.get(user_id=user_id)
     print(user_profile.user_id)
-    recipes=Recipe.objects.filter(user=user_profile.user)
-    context_dict={"user_profile":user_profile,"recipes":recipes}
+    recipes = Recipe.objects.filter(user=user_profile.user)
+    context_dict = {"user_profile": user_profile, "recipes": recipes}
 
     return render(request, "recipes/profile.html", context=context_dict)
 
@@ -65,19 +66,22 @@ def upload_recipe(request):
             return redirect("/recipes/<recipe_id>")
         else:
             print(form.errors)
-    responce = render(request, "recipes/upload_recipe.html", {'form': form})
+    responce = render(request, "recipes/upload_recipe.html", {"form": form})
     return responce
+
 
 def edit_bio(request):
     responce = render(request, "recipes/edit_bio.html", context={})
 
+
 def upload_new_profile_picture(request):
     responce = render(request, "recipes/upload_new_profile_picture.html", context={})
 
+
 def user_login(request):
     if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST.get("username")
+        password = request.POST.get("password")
         user = authenticate(username=username, password=password)
 
         if user:
@@ -89,12 +93,18 @@ def user_login(request):
         else:
             return HttpResponse("Invalid login details.")
     else:
-        return render(request, 'recipes/login.html')
-    
+        return render(request, "recipes/login.html")
+
+
 def search(request):
-    search_query = request.GET.get('search_query', '')
+    search_query = request.GET.get("search_query", "")
     if search_query:
         results = Recipe.objects.filter(title=search_query)
     else:
         results = None
-    return render(request, 'recipes/search.html', {'results': results, 'search_quesry': search_query})
+    return render(
+        request,
+        "recipes/search.html",
+        {"results": results, "search_quesry": search_query},
+    )
+

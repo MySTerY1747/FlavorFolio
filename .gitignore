@@ -51,6 +51,8 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+flavorfolio/media/recipe_images/*
+flavorfolio/recipes/migrations/*
 
 # Translations
 *.mo
