@@ -20,5 +20,12 @@ FlavourFolio - {{ recipe.title }}
   {% for comment in recipe.comments.all %}
     <li>{{ comment.user.username }} - {{ comment.content }}</li>
   {% endfor %}
+</ul>
+
+<ul>
+  {% for tag in tags %}
+    <li><a href="{% url 'recipes:tag' tag.name %}">{{ tag.name }}</a></li>
+  {% endfor %}
+</ul>
 
 {% endblock %}

@@ -36,12 +36,13 @@ def register(request):
 
 def recipe(request, recipe_id):
     try:
+        recipe_tags = Tag.objects.filter(recipes=recipe_id)
         current_recipe = Recipe.objects.get(id=recipe_id)
         current_recipe_comments = Comment.objects.filter(recipe=current_recipe)
         return render(
             request,
             "recipes/recipe.html",
-            context={"recipe": current_recipe, "comments": current_recipe_comments},
+            context={"recipe": current_recipe, "comments": current_recipe_comments, "tags": recipe_tags,},
         )
     except Exception as e:
         return HttpResponse("404. Recipe not found.")
