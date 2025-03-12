@@ -41,3 +41,31 @@ button {
   flex:1;
   font-size: 1em;
 }
+
+.recipe-list img {
+  width: 6.5em;
+  height: 6.5em;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.recipe-list a {
+  font-size: 1rem;
+  text-decoration: underline;
+  color:black;
+  font-weight: bold;
+}
+
+.recipe-list a:hover {
+  color: tomato;
+}
+
+.recipe-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  border-bottom: 0.05em solid dimgrey;
+  border-top: 0.05em solid dimgrey;
+  background: inherit;
+}

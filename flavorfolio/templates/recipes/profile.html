@@ -16,24 +16,25 @@
   <div class="profile-box">
 
     <div class="profile-picture-and-name">
-        <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
-        <h3>User</h3>
+        <img src="{{ user_profile.image.url }}" alt="Profile Picture">
+        <h3>{{ user_profile.user.username }}</h3>
     </div>
 
     <div class="bio">
       <h4>Bio:</h4>
-      <p>bio</p>
+      <p>{{ user_profile.bio }}</p>
     </div>
-    <!-- My Recipes -->
     <div class="my-recipes">
         <h4>My Recipes:</h4>
-        <ul>
-         <li>Recipe</li>
-         <li>Recipe</li>
-         <li>Recipe</li>
-         <li>Recipe</li>
-         <li>Recipe</li>
+        <ul class="recipe-list">
+        {% for recipe in recipes%}
+          <li>
+              <h4><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a></h4>
+              <img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
+          </li>
+        {% endfor %}
         </ul>
+
       </div>
 
     

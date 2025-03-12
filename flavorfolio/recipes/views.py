@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from recipes.models import Recipe
 from recipes.forms import *
+from django.shortcuts import get_object_or_404
 
 
 def index(request):
@@ -44,8 +45,13 @@ def recipe(request, recipe_id):
         return HttpResponse("404. Recipe not found.")
 
 
-def profile(request):
-    return render(request, "recipes/profile.html", context={})
+def profile(request,user_id):
+    user_profile=UserProfile.objects.get(user_id=user_id)
+    print(user_profile.user_id)
+    recipes=Recipe.objects.filter(user=user_profile.user)
+    context_dict={"user_profile":user_profile,"recipes":recipes}
+
+    return render(request, "recipes/profile.html", context=context_dict)
 
 
 def upload_recipe(request):

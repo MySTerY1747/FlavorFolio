@@ -22,6 +22,7 @@ users = [
         "username": "Marina the home cook",
         "email": "marina@someemail.com",
         "bio": "I am a home cook",
+        "image_path":"population_script_images/marina.jpg"
     },
 ]
 
@@ -85,10 +86,16 @@ comments = [
 
 
 def add_user(user_dict):
+
     user_model = User.objects.get_or_create(
         username=user_dict["username"], email=user_dict["email"]
     )[0]
-    user = UserProfile.objects.get_or_create(user=user_model, bio=user_dict["bio"])[0]
+    
+    try:
+        user = UserProfile.objects.get_or_create(user=user_model, bio=user_dict["bio"],picture=user_dict["image_path"])[0]
+    except:
+        user = UserProfile.objects.get_or_create(user=user_model, bio=user_dict["bio"])[0]
+
     user.save()
     return user
 
