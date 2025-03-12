@@ -27,7 +27,6 @@ h1 {
     border-radius: 0.5em;
     margin-bottom: 0.5em;
 }
-
 .recipes-box {
     background-color: antiquewhite;
     padding: 1em;
@@ -53,7 +52,7 @@ h1 {
 }
 
 .recipe-list a {
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-decoration: underline;
     color:black;
     font-weight: bold;
@@ -64,9 +63,10 @@ h1 {
 }
 
 .recipe-list img {
-    width: 100px;
-    height: 100px;
+    width: 6.5em;
+    height: 6.5em;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .right-section {

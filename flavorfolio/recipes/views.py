@@ -16,7 +16,6 @@ def index(request):
     print(list_of_recipes)
 
     context_dict["recipes"] = list_of_recipes
-
     response = render(request, "recipes/index.html", context=context_dict)
     return response
 
