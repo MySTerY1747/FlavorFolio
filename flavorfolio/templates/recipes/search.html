@@ -10,15 +10,16 @@
 {% endblock %}
 
 {% block body_block %}
+<link rel="stylesheet" href="{% static 'stylesheets/search_styles.css' %}">
     <form method="GET" action="{% url 'recipes:search' %}">
         <input type="text" name="search_query" placeholder="Search Recipes..." value="{{ search_query }}">
         <button type="submit">Search</button>
     </form>
 
 {% if results %}
-    <ul>
+    <ul class="search_results_box">
         {% for recipe in results %}
-            <li>{{ recipe.title }} <img src="{{ recipe.image.url }}" alt=""></li>
+            <li><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a> <img src="{{ recipe.image.url }}" class="recipe-image" alt=""></li>
         {% endfor %}
     </ul>
 {% else %}

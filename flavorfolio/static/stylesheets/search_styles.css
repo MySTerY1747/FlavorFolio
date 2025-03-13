@@ -1,0 +1,15 @@
+.search_results_box {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.recipe-image {
+    width: 6.5em;
+    height: 6.5em;
+    border-radius: 5px;
+    object-fit: cover;
+}
