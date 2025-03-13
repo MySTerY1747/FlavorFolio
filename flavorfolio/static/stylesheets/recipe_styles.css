@@ -19,3 +19,17 @@
 .recipe-page-image{
     max-height: 30em;
 }
+
+.comment-box{
+    display:flex;
+    padding: 1em;
+    background-color: khaki;
+}
+
+.profile-section{
+    flex:0.5;
+}
+
+.comment-section{
+    flex:1
+}

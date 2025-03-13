@@ -27,6 +27,7 @@ FlavourFolio - {{ recipe.title }}
 <h1 class="recipe-subtitles">Recipe Tags:</h1>
 <ul>
   {% for tag in tags %}
+  
     <li><a href="{% url 'recipes:tag' tag.name %}">{{ tag.name }}</a></li>
   {% endfor %}
 </ul>
@@ -36,11 +37,18 @@ FlavourFolio - {{ recipe.title }}
 <div class="recipe-box">
 <h1 class="recipe-subtitles">Comments</h1>
 {% if recipe.comments.all %}
-<ul>
+
     {% for comment in recipe.comments.all %}
-      <li>{{ comment.user.username }} - {{ comment.content }}</li>
+    <div class="comment-box">
+    <div class="profile-section">
+      <h3> <a href="/profile/{{ comment.user.id }}">{{ comment.user.username }}</a></h3>
+    </div>
+    <div class="comment-section">
+      {{ comment.content }}
+    </div>
+    </div>
     {% endfor %}
-</ul>
+
 
 {% else %}
     <p>There aren't any comments yet.</p>
