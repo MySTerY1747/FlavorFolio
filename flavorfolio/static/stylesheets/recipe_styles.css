@@ -24,12 +24,32 @@
     display:flex;
     padding: 1em;
     background-color: khaki;
+    border-radius: 0.5em;
+    margin:0.5em;
+    border-width:0.1em;
+    border-color:black;
+    border-style: double;
+
 }
 
 .profile-section{
-    flex:0.5;
+    flex:0.35;
+    border-right:double;
+    border-width:0.1em;
 }
 
 .comment-section{
-    flex:1
+    margin-left:0.5em;
+    flex:1;
+}
+
+.tag-section{
+    display:inline;
+    padding: 0.5em;
+    background-color: khaki;
+    border-radius: 0.5em;
+    margin:0.5em;
+    border-width:0.1em;
+    border-color:black;
+    border-style: double;
 }

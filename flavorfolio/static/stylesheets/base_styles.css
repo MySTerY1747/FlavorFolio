@@ -22,9 +22,7 @@ button {
     background-color: beige
   }
 
-  body{
-    font-family: Verdana, sans-serif;
-  }
+
 
 .form-field {
     display: flex;
@@ -48,7 +46,15 @@ button {
   border-radius: 5px;
   object-fit: cover;
 }
+a {
+  text-decoration: underline;
+  color:black;
+  font-weight: bold;
+}
 
+ a:hover {
+  color: tomato;
+}
 .recipe-list a {
   font-size: 1rem;
   text-decoration: underline;
@@ -68,4 +74,8 @@ button {
   border-bottom: 0.05em solid dimgrey;
   border-top: 0.05em solid dimgrey;
   background: inherit;
+}
+
+body{
+  font-family: Verdana, sans-serif;
 }
