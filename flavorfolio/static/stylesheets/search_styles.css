@@ -1,4 +1,8 @@
-.search_results_box {
+.search-bar{
+    text-align: center;
+}
+
+.search-results-box {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 10px;
