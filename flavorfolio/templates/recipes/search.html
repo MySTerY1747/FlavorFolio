@@ -18,7 +18,7 @@
 {% if results %}
     <ul>
         {% for recipe in results %}
-            <li>{{ recipe.title }}</li>
+            <li>{{ recipe.title }} <img src="{{ recipe.image.url }}" alt=""></li>
         {% endfor %}
     </ul>
 {% else %}
