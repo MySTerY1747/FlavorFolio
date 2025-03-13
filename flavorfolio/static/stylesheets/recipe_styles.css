@@ -1,0 +1,21 @@
+.recipe-box {
+    max-width: 80%;
+    margin: 1em auto;
+    padding: 1em;
+    background-color: antiquewhite;
+    border-radius: 0.5em;
+    display: block;
+    justify-content: space-between;
+  }
+
+.recipe-title{
+    font-size: 2em;
+}
+
+.recipe-subtitles{
+    font-size: 1.5em;
+}
+
+.recipe-page-image{
+    max-height: 30em;
+}

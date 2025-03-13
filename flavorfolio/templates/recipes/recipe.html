@@ -10,22 +10,43 @@ FlavourFolio - {{ recipe.title }}
 {% endblock %}
 
 {% block body_block %}
+<link rel="stylesheet" href="{% static 'stylesheets/recipe_styles.css' %}">
+<div class="recipe-box">
+<h1 class="recipe-title">{{ recipe.title }}</h1>
+<img src="{{ recipe.image.url }}" class="recipe-page-image" alt="Recipe image">
 
-<p>{{ recipe.title }}</p>
-<img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
+<h1 class="recipe-subtitles">
+  Author: <a href="/profile/{{ recipe.user.id }}">{{ recipe.user.username }}</a></h1>
+
+<h1 class="recipe-subtitles">Ingredients:</h1>
 <p>{{ recipe.ingredients }}</p>
+
+<h1 class="recipe-subtitles">Instructions:</h1>
 <p>{{ recipe.instructions }}</p>
 
-<ul>
-  {% for comment in recipe.comments.all %}
-    <li>{{ comment.user.username }} - {{ comment.content }}</li>
-  {% endfor %}
-</ul>
-
+<h1 class="recipe-subtitles">Recipe Tags:</h1>
 <ul>
   {% for tag in tags %}
     <li><a href="{% url 'recipes:tag' tag.name %}">{{ tag.name }}</a></li>
   {% endfor %}
 </ul>
+
+</div>
+
+<div class="recipe-box">
+<h1 class="recipe-subtitles">Comments</h1>
+{% if recipe.comments.all %}
+<ul>
+    {% for comment in recipe.comments.all %}
+      <li>{{ comment.user.username }} - {{ comment.content }}</li>
+    {% endfor %}
+</ul>
+
+{% else %}
+    <p>There aren't any comments yet.</p>
+{% endif %}
+</div>
+
+
 
 {% endblock %}
