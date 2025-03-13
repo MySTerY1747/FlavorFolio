@@ -10,12 +10,16 @@ FlavourFolio - {{ tag.name }} tag
 {% endblock %}
 
 {% block body_block %}
-
-<p>{{ tag.name }}</p>
-
-<ul>
-  {% for recipe in tag.recipes.all %}
-    <li><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a></li>
-  {% endfor %}
-
+<link rel="stylesheet" href="{% static 'stylesheets/tag_styles.css' %}">
+<div class="tags-box">
+  <h1>{{ tag.name }} Recipes</h1>
+  <ul class="recipe-list">
+    {% for recipe in tag.recipes.all %}
+      <li>
+        <a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a>
+        <img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
+      </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}
