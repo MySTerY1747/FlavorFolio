@@ -28,8 +28,10 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return redirect("/recipes/profile/")
+            UserProfile.objects.create(user=user)
+            return redirect(reverse("recipes:profile", args=[user.id]))
         else:
+            print(form.errors)
             form = RegistrationForm()
     return render(request, "recipes/register.html", {"form": form})
 
