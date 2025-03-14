@@ -15,8 +15,8 @@
         <input type="text" name="search_query" placeholder="Search Recipes..." value="{{ search_query }}">
         <button type="submit">Search</button>
     </form>
-
-<ul class="search-results-box">
+<div class="search-results-box" >
+<ul class="recipe-list">
 {% if results %}
     {% for recipe in results %}
         <li><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a> <img src="{{ recipe.image.url }}" class="recipe-image" alt=""></li>
@@ -26,4 +26,5 @@
     <p>No results found.</p>
 {% endif %}
 </ul>
+</div>
 {% endblock %}
