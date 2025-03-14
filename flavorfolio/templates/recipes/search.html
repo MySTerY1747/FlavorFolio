@@ -16,13 +16,14 @@
         <button type="submit">Search</button>
     </form>
 
+<ul class="search-results-box">
 {% if results %}
-    <ul class="search-results-box">
-        {% for recipe in results %}
-            <li><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a> <img src="{{ recipe.image.url }}" class="recipe-image" alt=""></li>
-        {% endfor %}
-    </ul>
+    {% for recipe in results %}
+        <li><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a> <img src="{{ recipe.image.url }}" class="recipe-image" alt=""></li>
+    {% endfor %}
+
 {% else %}
     <p>No results found.</p>
 {% endif %}
+</ul>
 {% endblock %}
