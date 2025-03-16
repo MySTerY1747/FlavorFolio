@@ -3,17 +3,40 @@
 }
 
 .search-results-box {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    margin: 50px auto;
-    text-align: center;
+    max-width: 80%;
+    margin: 1em auto;
+    padding: 1em;
+    background-color: antiquewhite;
+    border-radius: 0.5em;
 }
 
-.recipe-image {
-    width: 6.5em;
-    height: 6.5em;
+.recipe-image img{
+    width: 10em;
+    height: 10em;
     border-radius: 5px;
     object-fit: cover;
+}
+.tag-section{
+    display:block
+}
+.tag-box{
+    display:inline;
+    padding: 0.5em;
+    font-size:1em;
+    background-color: khaki;
+    border-radius: 0.5em;
+    margin:0.5em;
+    border-width:0.1em;
+    border-color:black;
+    border-style: double;
+}
+.tag-box a{
+    font-size:1em
+}
+.tag-section{
+    padding:2em;
+    flex-basis: 100%;
+}
+h3{
+    display:inline;
 }

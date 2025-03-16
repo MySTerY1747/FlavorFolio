@@ -41,10 +41,11 @@ button {
 }
 
 .recipe-list img {
-  width: 6.5em;
-  height: 6.5em;
+  flex:2;
+  height: 15em;
   border-radius: 5px;
-  object-fit: cover;
+  object-fit: contain;
+  
 }
 a {
   text-decoration: underline;
@@ -56,7 +57,8 @@ a {
   color: tomato;
 }
 .recipe-list a {
-  font-size: 1rem;
+  flex:1;
+  font-size: 1.5rem;
   text-decoration: underline;
   color:black;
   font-weight: bold;
@@ -68,6 +70,7 @@ a {
 
 .recipe-list li {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 0.5em;
