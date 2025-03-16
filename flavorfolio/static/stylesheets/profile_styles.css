@@ -1,30 +1,29 @@
 .profile-box {
-    max-width: 80%;
-    margin: 1em auto;
-    padding: 1em;
-    background-color: antiquewhite;
-    border-radius: 0.5em;
-    display: flex;
-    justify-content: space-between;
-  }
+  max-width: 80%;
+  margin: 1em auto;
+  padding: 1em;
+  background-color: antiquewhite;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: space-between;
+}
   
-  .profile-picture-and-name ,.bio,.my-recipes{
-    flex:1;
-    margin:0.5em;
-    border-radius: 0.05em;
-    border-style: double;
-    padding:0.5em
-    
-  }
+.profile-picture-and-name ,.bio,.my-recipes{
+  flex:1;
+  margin:0.5em;
+  border-radius: 0.05em;
+  border-style: double;
+  padding:0.5em;
+}
   
-  .button-box{
-    display: flex;
-    gap: 0.5em;
-    margin-top: 1em;
-    justify-content: center
+.button-box{
+  display: flex;
+  gap: 0.5em;
+  margin-top: 1em;
+  justify-content: center
 }
   
 
 h4{
-    margin-top: 0;
+  margin-top: 0;
 }

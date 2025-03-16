@@ -40,28 +40,13 @@ button {
   font-size: 1em;
 }
 
-.recipe-list img {
-  flex:2;
-  height: 15em;
-  border-radius: 5px;
-  object-fit: contain;
-  
-}
-a {
-  text-decoration: underline;
-  color:black;
-  font-weight: bold;
-}
-
- a:hover {
-  color: tomato;
-}
 .recipe-list a {
-  flex:1;
+  flex: 1;
   font-size: 1.5rem;
   text-decoration: underline;
-  color:black;
+  color: black;
   font-weight: bold;
+  
 }
 
 .recipe-list a:hover {
@@ -77,6 +62,35 @@ a {
   border-bottom: 0.05em solid dimgrey;
   border-top: 0.05em solid dimgrey;
   background: inherit;
+}
+
+.recipe-title-section {
+  flex: 1; 
+  min-width: 50px; 
+  line-height: 1
+}
+.recipe-image-section {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipe-image-section img {
+  height: 14em;
+  border-radius: 5px;
+  object-fit: contain;
+  width: auto;
+}
+
+a {
+  text-decoration: underline;
+  color:black;
+  font-weight: bold;
+}
+
+a:hover {
+  color: tomato;
 }
 
 body{

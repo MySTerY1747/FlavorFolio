@@ -27,7 +27,7 @@ FlavourFolio - {{ recipe.title }}
 <h1 class="recipe-subtitles">Recipe Tags:</h1>
 
   {% for tag in tags %}
-  
+
     <div class="tag-section"><a href="{% url 'recipes:tag' tag.name %}">{{ tag.name }}</a></div>
   {% endfor %}
 

@@ -20,7 +20,15 @@
 {% if results %}
     {% for result in results %}
         <li>
-        <a href="{% url 'recipes:recipe' result.0.id %}">{{ result.0.title }}</a> <img src="{{ result.0.image.url }}" class="recipe-image" alt="">
+
+        <div class="recipe-title-section">
+            <a href="{% url 'recipes:recipe' result.0.id %}">{{ result.0.title }}</a> 
+        </div>
+        
+        <div class="recipe-image-section">
+            <img src="{{ result.0.image.url }}" class="recipe-image" alt="">
+        </div>
+
         <div class="tag-section">
             <h3>Recipe Tags:</h3>
             {% for tag in result.1 %}
@@ -28,8 +36,6 @@
             {% endfor %}
         </div>
         </li>
-        
-        
     {% endfor %}
 
 {% else %}

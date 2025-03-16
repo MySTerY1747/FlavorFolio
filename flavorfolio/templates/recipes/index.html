@@ -24,8 +24,12 @@ FlavourFolio - Homepage
                     
                     {% for recipe in recipes|slice:":5" %}
                         <li>
-                            <h1><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a></h1>
-                            <img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
+                            <div class="recipe-title-section">
+                                <h1><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a></h1>
+                            </div>
+                            <div class="recipe-image-section">
+                                <img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
+                            </div>
                         </li>
                     {% endfor %}
                 </ul>
