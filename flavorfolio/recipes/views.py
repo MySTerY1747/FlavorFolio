@@ -106,9 +106,15 @@ def search(request):
     if search_query:
         results=[]
         for recipe in Recipe.objects.all():
-            recipe_tags = Tag.objects.filter(recipes=recipe.id)
             if search_query.lower() in recipe.title.lower():
+
                 results.append(recipe)
+          
+        for tag in Tag.objects.all():
+
+            if search_query.lower() in tag.name.lower():
+
+                print(tag.recipes)
     else:
         results = None
     return render(
