@@ -1,5 +1,6 @@
 .search-bar{
     text-align: center;
+    margin: 1em;
 }
 
 .search-results-box {
@@ -16,9 +17,11 @@
     border-radius: 5px;
     object-fit: cover;
 }
+
 .tag-section{
     display:block
 }
+
 .tag-box{
     display:inline;
     padding: 0.5em;

@@ -104,33 +104,24 @@ def user_login(request):
 
 def search(request):
     search_query = request.GET.get("search_query", "")
+    tag = request.GET.get("tag", "")
     
     if search_query:
-        results=[]
-        for recipe in Recipe.objects.all():
+        results_set = set()
+        title_matches = Recipe.objects.filter(title__icontains=search_query)
+        tag_matches = Tag.objects.filter(name__icontains=search_query)
+        tag_recipes = Recipe.objects.filter(id__in=tag_matches.values_list("recipes", flat=True))
+        results_set.update(title_matches)
+        results_set.update(tag_recipes)    
 
-            if search_query.lower() in recipe.title.lower():
-               
-                results.append((recipe,Tag.objects.filter(recipes=recipe.id).all()))
-          
-        for tag in Tag.objects.all():
+    results = [
+        (recipe, Tag.objects.filter(recipes=recipe)) for recipe in results_set
+    ] if results_set else None
 
-            if search_query.lower() in tag.name.lower():
-
-                for recipe in tag.recipes.all():
-                    
-                    if recipe not in results:
-
-                       results.append((recipe,Tag.objects.filter(recipes=recipe.id).all()))
-
-                
-                
-    else:
-        results = None
     return render(
         request,
         "recipes/search.html",
-        {"results": results, "search_quesry": search_query},
+        {"results": results, "search_query": search_query,"tags":tag},
     )
 
 def tag(request, tag_name):
