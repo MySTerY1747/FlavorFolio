@@ -105,14 +105,15 @@ def user_login(request):
 def search(request):
     search_query = request.GET.get("search_query", "")
     tag = request.GET.get("tag", "")
-    
+    results_set = set()
     if search_query:
-        results_set = set()
+        
         title_matches = Recipe.objects.filter(title__icontains=search_query)
         tag_matches = Tag.objects.filter(name__icontains=search_query)
         tag_recipes = Recipe.objects.filter(id__in=tag_matches.values_list("recipes", flat=True))
         results_set.update(title_matches)
-        results_set.update(tag_recipes)    
+        results_set.update(tag_recipes)
+
 
     results = [
         (recipe, Tag.objects.filter(recipes=recipe)) for recipe in results_set

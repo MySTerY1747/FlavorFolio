@@ -6,12 +6,13 @@
 {% endblock %}
 
 {% block header_block %}
-    <img src="{% static 'images/headers/search_header.png' %}" alt="Search Header">
+<img src="{% static 'images/headers/search_header.png' %}" alt="Search Header">
 {% endblock %}
 
 {% block body_block %}
 <link rel="stylesheet" href="{% static 'stylesheets/search_styles.css' %}">
     <div class="search-bar">
+
     <form method="GET" action="{% url 'recipes:search' %}">
         <input type="text" name="search_query" placeholder="Search Recipes..." value="{{ search_query }}">
         <button type="submit">Search</button>
