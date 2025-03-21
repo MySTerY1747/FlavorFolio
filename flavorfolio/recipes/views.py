@@ -154,7 +154,7 @@ def user_login(request):
 
 
 def search(request):
-    search_query = request.GET.get("search_query", "")
+    search_query = ' '.join(request.GET.get("search_query", "").split())
     tag = request.GET.get("tag", "")
     results_set = set()
     if search_query:
