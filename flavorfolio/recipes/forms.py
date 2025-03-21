@@ -25,7 +25,7 @@ class RecipeForm(forms.ModelForm):
 class EditBioForm(forms.ModelForm):
     bio = forms.CharField(widget=forms.Textarea,
                           help_text="Enter New Bio:")
-
+    
     class Meta:
         model = UserProfile
         fields = ('bio',)
