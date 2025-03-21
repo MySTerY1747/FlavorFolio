@@ -39,9 +39,16 @@
 
     
   </div>
+
+  {% if user_profile.user == user %}
+
   <div class="button-box">
     <a href="{% url 'recipes:edit_bio' %}"><button type="button">Edit Bio</button></a>
     <a href="{% url 'recipes:upload_new_profile_picture' %}"><button type="button">Upload New Profile Picture</button></a>
     <button type="submit" name="upload_recipe">Upload New Recipe</button>
-</div>
+
+  </div>
+  {% endif %}
+  
+
 {% endblock %}
