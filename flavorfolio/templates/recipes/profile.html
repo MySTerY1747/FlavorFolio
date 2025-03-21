@@ -16,7 +16,11 @@
   <div class="profile-box">
 
     <div class="profile-picture-and-name">
-        <img class="header-image" src="{{ user_profile.picture.url }}" alt="Profile Picture">
+        {% if user_profile.picture %}
+          <img class="header-image" src="{{ user_profile.picture.url }}" alt="Profile Picture">
+        {% else %}
+          No Profile Picture
+        {% endif %}
         <h3>{{ user_profile.user.username }}</h3>
     </div>
 
