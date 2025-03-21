@@ -28,6 +28,8 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            user.set_password(user.password)
+            user.save()
             UserProfile.objects.create(user=user)
             return redirect(reverse("recipes:profile", args=[user.id]))
         else:
