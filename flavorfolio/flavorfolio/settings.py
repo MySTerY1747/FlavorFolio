@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 
+from django.urls import reverse, reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
@@ -82,7 +84,9 @@ WSGI_APPLICATION = "flavorfolio.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": str(BASE_DIR / "db.sqlite3",)
+        "NAME": str(
+            BASE_DIR / "db.sqlite3",
+        ),
     }
 }
 
@@ -135,3 +139,5 @@ STATICFILES_DIRS = [
 MEDIA_DIR = os.path.join(BASE_DIR, "media")
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = "/media/"
+LOGIN_URL = reverse_lazy("recipes:login")
+LOGIN_REDIRECT_URL = reverse_lazy("recipes:index")
