@@ -65,7 +65,6 @@ def user_logout(request):
 
 def profile(request, user_id):
     user_profile = UserProfile.objects.get(user_id=user_id)
-    print(user_profile.user_id)
     recipes = Recipe.objects.filter(user=user_profile.user)
     context_dict = {"user_profile": user_profile, "recipes": recipes}
 
@@ -90,12 +89,14 @@ def upload_recipe(request):
 
 @login_required
 def edit_bio(request):
-    responce = render(request, "recipes/edit_bio.html", context={})
+    response = render(request, "recipes/edit_bio.html", context={"user": request.user})
+    return response
 
 
 @login_required
 def upload_new_profile_picture(request):
-    responce = render(request, "recipes/upload_new_profile_picture.html", context={})
+    response = render(request, "recipes/upload_new_profile_picture.html", context={})
+    return response
 
 
 def user_login(request):

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="{% static 'stylesheets/profile_styles.css' %}">
 
 <div class="profile-box">
-    <form class="recipe-form" method="post" action="{% url 'recipes:profile' %}">
+    <form class="recipe-form" method="post" action="{% url 'recipes:profile' user_id=user.id  %}">
         {% csrf_token %}
         {% for field in form.visible_fields %}
             <div class="form-field">
