@@ -31,6 +31,7 @@ def register(request):
             user.set_password(user.password)
             user.save()
             UserProfile.objects.create(user=user)
+            login(request, user)
             return redirect(reverse("recipes:profile", args=[user.id]))
         else:
             print(form.errors)
