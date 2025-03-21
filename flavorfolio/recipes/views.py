@@ -117,8 +117,22 @@ def edit_bio(request):
 
 @login_required
 def upload_new_profile_picture(request):
-    response = render(request, "recipes/upload_new_profile_picture.html", context={})
-    return response
+    if request.method == "POST":
+        form = UploadProfilePictureForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_image = form.cleaned_data["image"]
+            user_profile = UserProfile.objects.get(user=request.user)
+            user_profile.picture = new_image
+            user_profile.save()
+            return redirect(reverse("recipes:user_profile"))
+        else:
+            return HttpResponse(form.errors.as_text())
+    else:
+        return render(
+            request,
+            "recipes/upload_new_profile_picture.html",
+            {"form": UploadProfilePictureForm()},
+        )
 
 
 def user_login(request):
