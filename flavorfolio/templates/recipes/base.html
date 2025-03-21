@@ -23,9 +23,11 @@
 
   <body>
     <header>
-    {% block header_block %}
-    NO ARGUMENT PASSED INTO header_block
-    {% endblock %}
+    <a href="{% url 'recipes:index' %}">
+      {% block header_block %}
+      NO ARGUMENT PASSED INTO header_block
+      {% endblock %}
+    </a>
     </header>
 
     <div>
