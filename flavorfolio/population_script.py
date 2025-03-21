@@ -252,7 +252,6 @@ def add_user(user_dict):
         username=user_dict["username"], email=user_dict["email"]
     )[0]
 
-    # Open the image file and create the UserProfile with it
     with open(user_dict["image_path"], "rb") as f:
         user = UserProfile.objects.get_or_create(
             user=user_model,

@@ -44,12 +44,20 @@ def recipe(request, recipe_id):
         return render(
             request,
             "recipes/recipe.html",
-            context={"recipe": current_recipe, 
-                     "comments": current_recipe_comments, 
-                     "tags": recipe_tags,},
+            context={
+                "recipe": current_recipe,
+                "comments": current_recipe_comments,
+                "tags": recipe_tags,
+            },
         )
     except Exception as e:
         return HttpResponse("404. Recipe not found.")
+
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return redirect(reverse("recipes:index"))
 
 
 def profile(request, user_id):
@@ -61,6 +69,7 @@ def profile(request, user_id):
     return render(request, "recipes/profile.html", context=context_dict)
 
 
+@login_required
 def upload_recipe(request):
     form = RecipeForm()
     if request.method == "POST":
@@ -76,10 +85,12 @@ def upload_recipe(request):
     return responce
 
 
+@login_required
 def edit_bio(request):
     responce = render(request, "recipes/edit_bio.html", context={})
 
 
+@login_required
 def upload_new_profile_picture(request):
     responce = render(request, "recipes/upload_new_profile_picture.html", context={})
 
@@ -107,23 +118,26 @@ def search(request):
     tag = request.GET.get("tag", "")
     results_set = set()
     if search_query:
-        
         title_matches = Recipe.objects.filter(title__icontains=search_query)
         tag_matches = Tag.objects.filter(name__icontains=search_query)
-        tag_recipes = Recipe.objects.filter(id__in=tag_matches.values_list("recipes", flat=True))
+        tag_recipes = Recipe.objects.filter(
+            id__in=tag_matches.values_list("recipes", flat=True)
+        )
         results_set.update(title_matches)
         results_set.update(tag_recipes)
 
-
-    results = [
-        (recipe, Tag.objects.filter(recipes=recipe)) for recipe in results_set
-    ] if results_set else None
+    results = (
+        [(recipe, Tag.objects.filter(recipes=recipe)) for recipe in results_set]
+        if results_set
+        else None
+    )
 
     return render(
         request,
         "recipes/search.html",
-        {"results": results, "search_query": search_query,"tags":tag},
+        {"results": results, "search_query": search_query, "tags": tag},
     )
+
 
 def tag(request, tag_name):
     tag = Tag.objects.get(name=tag_name)

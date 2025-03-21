@@ -44,13 +44,27 @@ FlavourFolio - Homepage
                 <button class="homepage-button">Search</button>
                 </a>
 
-                <a href="{% url 'recipes:register' %}">
-                <button class="homepage-button">Sign Up</button>
-                </a>
+                <div class="authentication">
 
-                <a href="{% url 'recipes:login' %}">
-                <button class="homepage-button">Login</button>
-                </a>
+                  {% if user.is_authenticated %}
+                    <!-- Show these links when the user is logged in -->
+                    <li><a href="{% url 'recipes:logout' %}">Logout</a></li>
+
+                  {% else %}
+
+                    <!-- Show these links when the user is NOT logged in -->
+                  <a href="{% url 'recipes:register' %}">
+                  <button class="homepage-button">Sign Up</button>
+                  </a>
+
+                  <a href="{% url 'recipes:login' %}">
+                  <button class="homepage-button">Login</button>
+                  </a>
+
+                  {% endif %}
+                  
+
+                </div>
             </div>
 
         <img src="{% static 'images/food.jpg' %}" class="image">
