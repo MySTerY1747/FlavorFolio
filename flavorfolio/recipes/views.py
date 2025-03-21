@@ -73,11 +73,14 @@ def user_profile(request):
 
 
 def profile(request, user_id):
-    user_profile = UserProfile.objects.get(user_id=user_id)
-    recipes = Recipe.objects.filter(user=user_profile.user)
-    context_dict = {"user_profile": user_profile, "recipes": recipes}
+    if request.user.id == user_id:
+        return redirect(reverse("recipes:user_profile"))
+    else:
+        user_profile = UserProfile.objects.get(user_id=user_id)
+        recipes = Recipe.objects.filter(user=user_profile.user)
+        context_dict = {"user_profile": user_profile, "recipes": recipes}
 
-    return render(request, "recipes/profile.html", context=context_dict)
+        return render(request, "recipes/profile.html", context=context_dict)
 
 
 @login_required
@@ -98,8 +101,18 @@ def upload_recipe(request):
 
 @login_required
 def edit_bio(request):
-    response = render(request, "recipes/edit_bio.html", context={"user": request.user})
-    return response
+    if request.method == "POST":
+        form = EditBioForm(request.POST)
+        if form.is_valid():
+            bio = form.cleaned_data["bio"]
+            user_profile = UserProfile.objects.get(user=request.user)
+            user_profile.bio = bio
+            user_profile.save()
+            return redirect(reverse("recipes:user_profile"))
+        else:
+            print(form.errors)
+    else:
+        return render(request, "recipes/edit_bio.html", {"form": EditBioForm()})
 
 
 @login_required
