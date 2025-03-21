@@ -89,7 +89,7 @@ recipes = [
         "title": "Moshari Kokkinisto (Greek Style Braised Beef)",
         "ingredients": "- Beef (rump, shoulder, or similar cut)\n - Carrot\n - Onion\n - Garlic\n - Tomatoes\n - Flour\n - Salt\n - Pepper\n - Red wine\n - Tomato paste\n - Various spices",
         "instructions": "- Cut the beef into pieces.\n - Season with salt and coat with flour.\n - Fry briefly until browned.\n - In a pot, add onion, carrot, salt, garlic, wine, and tomato paste.\n - Add your preferred spices.\n - Add the meat to the pot.\n - Cover and simmer on low heat for 1.5 hours.",
-        "image_path": "population_script_images/tigania-manitarion-kokkinisti.jpg",
+        "image_path": "population_script_images/moshari-kokkinisto.jpg",
     },
     {
         "user_index": 5,
@@ -124,7 +124,7 @@ recipes = [
 tags = [
     {
         "name": "Greek",
-        "recipe_indices": [0, 1, 2, 3, 4, 5, 7, 8],
+        "recipe_indices": [0, 1, 2, 3, 4, 5, 8, 9],
     },
     {
         "name": "Vegetarian",
@@ -134,42 +134,47 @@ tags = [
         "name": "Vegan",
         "recipe_indices": [0, 2, 6],
     },
-    # New tags
     {
         "name": "Chicken",
-        "recipe_indices": [3, 4],
+        "recipe_indices": [3, 4],  # Youvetsi and Lemon Chicken
     },
     {
         "name": "Beef",
-        "recipe_indices": [5],
+        "recipe_indices": [5],  # Moshari Kokkinisto
     },
     {
         "name": "Pork",
-        "recipe_indices": [7, 8],
+        "recipe_indices": [8, 9],  # Tigania and Lemony Pork Chops
     },
     {
         "name": "Pasta",
-        "recipe_indices": [3],
+        "recipe_indices": [3],  # Youvetsi (has orzo pasta)
     },
     {
         "name": "Rice",
-        "recipe_indices": [6, 8],
+        "recipe_indices": [6, 7],  # Bean Burritos and Mushroom Risotto
     },
     {
         "name": "Mushrooms",
-        "recipe_indices": [2, 8],
+        "recipe_indices": [2, 7],  # Kokkinisti Tigania Manitarion and Mushroom Risotto
     },
     {
         "name": "Lemon",
-        "recipe_indices": [4, 7, 8],
+        "recipe_indices": [4, 8, 9],  # Lemon Chicken, Tigania, and Lemony Pork Chops
     },
     {
         "name": "Quick Meal",
-        "recipe_indices": [1, 6],
+        "recipe_indices": [1, 6],  # Greek Salad and Bean Burritos
     },
     {
         "name": "Slow Cook",
-        "recipe_indices": [0, 3, 5, 7, 8],
+        "recipe_indices": [
+            0,
+            3,
+            5,
+            8,
+            9,
+        ],  # Fasolada, Youvetsi, Moshari Kokkinisto, Tigania, Lemony Pork Chops
     },
 ]
 
