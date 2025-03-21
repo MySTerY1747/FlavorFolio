@@ -7,7 +7,12 @@
   display: flex;
   justify-content: space-between;
 }
-  
+
+.header-image {
+    width: 100%;
+    height: auto;
+}
+
 .profile-picture-and-name ,.bio,.my-recipes{
   flex:1;
   margin:0.5em;

@@ -5,3 +5,9 @@
     background-color: antiquewhite;
     border-radius: 0.5em;
   }
+
+
+.header-image {
+    width: 100%;
+    height: auto;
+}
