@@ -63,6 +63,15 @@ def user_logout(request):
     return redirect(reverse("recipes:index"))
 
 
+@login_required
+def user_profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    recipes = Recipe.objects.filter(user=user_profile.user)
+    context_dict = {"user_profile": user_profile, "recipes": recipes}
+
+    return render(request, "recipes/profile.html", context=context_dict)
+
+
 def profile(request, user_id):
     user_profile = UserProfile.objects.get(user_id=user_id)
     recipes = Recipe.objects.filter(user=user_profile.user)
