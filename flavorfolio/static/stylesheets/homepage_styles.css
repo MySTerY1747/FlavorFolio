@@ -92,3 +92,14 @@ h1 {
     margin-top: 1em;
     border-radius: 0.5em;
 }
+
+.tags{
+    display:inline;
+    padding: 0.5em;
+    background-color: khaki;
+    border-radius: 0.5em;
+    margin:0.5em;
+    border-width:0.1em;
+    border-color:black;
+    border-style: double;
+}
