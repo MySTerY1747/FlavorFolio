@@ -106,7 +106,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return redirect("/recipes/index/")
+                return redirect(reverse("recipes:index"))
             else:
                 return HttpResponse("Account is disabled.")
         else:
