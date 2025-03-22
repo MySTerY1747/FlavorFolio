@@ -1,0 +1,10 @@
+{% for recipe in recipes %}
+    <li>
+        <div class="recipe-title-section">
+            <h1><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a></h1>
+        </div>
+        <div class="recipe-image-section">
+            <img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
+        </div>
+    </li>
+{% endfor %}

@@ -39,8 +39,18 @@ def register(request):
     return render(request, "recipes/register.html", {"form": form})
 
 
-def load_recipes(request):
-    return HttpResponse("Placeholder")
+def load_recipes(request, num_loaded):
+    """
+    Loads the next 5 recipes after the ones already displayed.
+    Returns them as HTML that can be injected into the page.
+    """
+    next_recipes = sorted(
+        Recipe.objects.all(), key=lambda x: x.upload_date, reverse=True
+    )[num_loaded : num_loaded + 5]
+
+    return render(
+        request, "recipes/recipe_list_fragment.html", {"recipes": next_recipes}
+    )
 
 
 def recipe(request, recipe_id):

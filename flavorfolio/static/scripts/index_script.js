@@ -1,29 +1,29 @@
-// INFO: This is a placeholder. The goal is to have 5 more recipes loaded dynamically when the user clicks the "Load More" button using AJAX.
 $(document).ready(function () {
   $("#load-more").click(function () {
-    $("<p>New dynamically added paragraph!</p>").appendTo("body");
+    var url = $(this).data("ajax-target");
+
+    $(this).text("Loading...");
+
+    $.ajax({
+      url: url,
+      type: "GET",
+      success: function (data) {
+        $("#load-more").before(data);
+
+        var currentNum = parseInt($("#load-more").data("ajax-target").match(/\d+$/)[0]);
+        var newNum = currentNum + 5;
+        $("#load-more").data("ajax-target", $("#load-more").data("ajax-target").replace(/\d+$/, newNum));
+
+        $("#load-more").text("Load More");
+
+        // If no new recipes were loaded, hide the button
+        if (data.trim() === "") {
+          $("#load-more").hide();
+        }
+      },
+      error: function () {
+        $("#load-more").text("Error loading more recipes. Try again.");
+      }
+    });
   });
 });
-
-// Reusable function to send AJAX requests
-function loadDoc(url, callback) {
-  var xhttp = new XMLHttpRequest();
-
-  // Define what happens when the response is ready
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) { // Request completed successfully
-      callback(this); // Call the provided callback function with the response
-    }
-  };
-
-  xhttp.open("GET", url, true); // Initialize the request
-  xhttp.send(); // Send the request
-}
-
-// Example callback function to process the response
-function processResponse(xhttp) {
-  document.getElementById("demo1").innerHTML = xhttp.responseText;
-}
-
-// Usage: Send a request and specify the callback
-loadDoc("https://example.com/data", processResponse);
