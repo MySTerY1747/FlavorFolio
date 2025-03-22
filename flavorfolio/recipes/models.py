@@ -7,7 +7,9 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     #  username, email, and password are handeld by the Django User model
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to="profile_images", blank=True)
+    picture = models.ImageField(
+        upload_to="profile_images", blank=True, default="default-user-image.jpg"
+    )
     bio = models.CharField(max_length=500, blank=True)
 
     def __str__(self):
@@ -46,4 +48,3 @@ class Tag(models.Model):
 
     def __str__(self):
         return f"{self.name}"
-
