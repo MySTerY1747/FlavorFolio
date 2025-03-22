@@ -316,3 +316,98 @@ textarea.comment-input {
 .comment-author-link:hover i {
     color: rgba(255, 99, 71, 0.8) !important;
 }
+
+.update-image-button {
+    background-color: #2196F3 !important;  /* Blue instead of red */
+    color: white !important;
+    padding: 0.9em 1.8em;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    margin: 5px;
+}
+
+.update-image-button:hover {
+    background-color: #1976D2 !important;  /* Darker blue */
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+#image-update-form {
+    margin: 1.5em 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1.5em;
+    border-radius: 0.8em;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.image-upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin: 1.5em 0;
+}
+
+.form-button {
+    padding: 0.8em 1.5em;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button {
+    background-color: #4CAF50 !important;
+    color: white !important;
+}
+
+.submit-button:hover {
+    background-color: #45a049 !important;
+    transform: translateY(-2px);
+}
+
+.cancel-button {
+    background-color: #f8e887 !important;
+    color: #333 !important;
+}
+
+.cancel-button:hover {
+    background-color: #f5e16d !important;
+}
+
+input[type="file"] {
+    padding: 0.8em;
+    background-color: rgba(240, 230, 140, 0.3);
+    border: 2px solid rgba(240, 230, 140, 0.5);
+    border-radius: 0.6em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    background-color: rgba(240, 230, 140, 0.5);
+}

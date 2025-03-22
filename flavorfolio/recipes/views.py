@@ -238,3 +238,18 @@ def delete_recipe(request, recipe_id):
         return redirect(reverse("recipes:user_profile"))
 
     return HttpResponseNotAllowed(["POST"])
+
+
+@login_required
+def update_recipe_image(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    if request.user != recipe.user:
+        return HttpResponse("Unauthorized", status=401)
+
+    if request.method == "POST":
+        form = RecipeImageForm(request.POST, request.FILES, instance=recipe)
+        if form.is_valid():
+            form.save()
+
+    return redirect(reverse("recipes:recipe", args=[recipe_id]))

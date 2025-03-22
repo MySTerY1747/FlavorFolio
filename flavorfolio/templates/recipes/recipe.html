@@ -24,13 +24,41 @@ FlavourFolio - {{ recipe.title }}
 </h1>
 {% if user == recipe.user %}
 <div class="action-buttons">
+    <button class="update-image-button" onclick="toggleImageForm()">Update Image</button>
     <form action="{% url 'recipes:delete_recipe' recipe.id %}" method="post" 
           onsubmit="return confirm('Are you 100% sure you want to delete this recipe? This cannot be undone.');">
         {% csrf_token %}
         <button type="submit" class="delete-recipe-button">Delete Recipe</button>
     </form>
 </div>
+
+<div id="image-update-form" style="display: none;">
+    <form method="post" action="{% url 'recipes:update_recipe_image' recipe.id %}" enctype="multipart/form-data" class="image-upload-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="file" name="image" accept="image/*" required>
+            <div class="form-buttons">
+                <button type="submit" class="form-button submit-button">Upload New Image</button>
+                <button type="button" class="form-button cancel-button" onclick="toggleImageForm()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
 {% endif %}
+
+<script>
+function toggleImageForm() {
+    const form = document.getElementById('image-update-form');
+    const button = document.querySelector('.update-image-button');
+    if (form.style.display === 'none') {
+        form.style.display = 'block';
+        button.textContent = 'Cancel Update';
+    } else {
+        form.style.display = 'none';
+        button.textContent = 'Update Image';
+    }
+}
+</script>
 
 <h1 class="recipe-subtitles">Ingredients:</h1>
 <p>{{ recipe.ingredients }}</p>
