@@ -34,7 +34,8 @@
         {% for recipe in recipes%}
           <li>
               <h4><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a></h4>
-              <img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
+              <a href="{% url 'recipes:recipe' recipe.id %}"><img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image"></a>
+              
           </li>
         {% endfor %}
         </ul>

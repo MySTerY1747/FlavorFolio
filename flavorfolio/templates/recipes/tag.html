@@ -17,7 +17,7 @@ FlavourFolio - {{ tag.name }} tag
     {% for recipe in tag.recipes.all %}
       <li>
         <a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a>
-        <img class="header-image" src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image">
+        <a href="{% url 'recipes:recipe' recipe.id %}"><img src="{{ recipe.image.url }}" class="recipe-image" alt="Recipe image"></a>
       </li>
     {% endfor %}
   </ul>
