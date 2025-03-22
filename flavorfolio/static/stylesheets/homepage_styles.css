@@ -47,7 +47,7 @@ h3:after {
 }
 
 .left-section {
-    width: 48%;
+    width: 47%;
     display: flex;
     flex-direction: column;
     gap: 1.5em;
@@ -124,7 +124,7 @@ h3:after {
 }
 
 .right-section {
-    width: 48%;
+    width: 47%;
     display: flex;
     flex-direction: column;
     align-items: center;
