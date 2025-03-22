@@ -411,3 +411,59 @@ input[type="file"] {
 input[type="file"]:hover {
     background-color: rgba(240, 230, 140, 0.5);
 }
+
+.ingredients-box, .instructions-box {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1.5em;
+    border-radius: 0.8em;
+    margin: 1em 0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    white-space: pre-line;
+    font-family: 'Verdana', sans-serif;
+    line-height: 1.8;
+}
+
+.ingredients-box {
+    border-left: 4px solid #4CAF50;
+}
+
+.ingredients-box p {
+    position: relative;
+    padding-left: 1.5em;
+    margin: 0.8em 0;
+}
+
+.ingredients-box p::before {
+    content: "•";
+    color: #4CAF50;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.instructions-box {
+    border-left: 4px solid #2196F3;
+    counter-reset: step-counter;
+}
+
+.instructions-box p {
+    position: relative;
+    padding-left: 2.5em;
+    margin: 1.2em 0;
+    counter-increment: step-counter;
+}
+
+.instructions-box p::before {
+    content: counter(step-counter);
+    color: #2196F50;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    background-color: rgba(33, 150, 243, 0.1);
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
