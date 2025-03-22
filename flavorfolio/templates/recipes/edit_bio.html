@@ -12,6 +12,8 @@
 {% block body_block %}
 <link rel="stylesheet" href="{% static 'stylesheets/profile_styles.css' %}">
 
+<a href="{% url 'recipes:user_profile' %}"><button type="button">← Back to Profile Page</button></a>
+
 <div class="profile-box">
     <form class="recipe-form" method="post" action="{% url 'recipes:edit_bio' %}">
         {% csrf_token %}

@@ -11,6 +11,9 @@
 
 {% block body_block %}
     <link rel="stylesheet" href="{% static 'stylesheets/upload_recipe_styles.css' %}">
+
+    <a href="{% url 'recipes:user_profile' %}"><button type="button">← Back to Profile Page</button></a>
+    
     <div class="form-box">
         <h1>Enter Recipe Details:</h1>
         <form class="recipe-form" method="post" action="{% url 'recipes:upload_recipe' %}" enctype="multipart/form-data">
