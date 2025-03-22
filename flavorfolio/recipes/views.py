@@ -13,7 +13,7 @@ def index(request):
 
     list_of_recipes = sorted(
         Recipe.objects.all(), key=lambda x: x.upload_date, reverse=True
-    )
+    )[:5]
     five_tags = Tag.objects.all()[:5]
 
     context_dict["recipes"] = list_of_recipes
@@ -37,6 +37,10 @@ def register(request):
             print(form.errors)
             form = RegistrationForm()
     return render(request, "recipes/register.html", {"form": form})
+
+
+def load_recipes(request):
+    return HttpResponse("Placeholder")
 
 
 def recipe(request, recipe_id):
@@ -154,7 +158,7 @@ def user_login(request):
 
 
 def search(request):
-    search_query = ' '.join(request.GET.get("search_query", "").split())
+    search_query = " ".join(request.GET.get("search_query", "").split())
     tag = request.GET.get("tag", "")
     results_set = set()
     if search_query:

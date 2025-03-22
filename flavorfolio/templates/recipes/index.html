@@ -24,7 +24,7 @@ FlavourFolio - Homepage
                 <h3>New Recipes:</h3>
                 <ul class="recipe-list">
                     
-                    {% for recipe in recipes|slice:":5" %}
+                    {% for recipe in recipes %}
                         <li>
                             <div class="recipe-title-section">
                                 <h1><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.title }}</a></h1>
@@ -34,7 +34,7 @@ FlavourFolio - Homepage
                             </div>
                         </li>
                     {% endfor %}
-                    <button id="load-more">Load More</button>
+                    <button id="load-more" data-ajax-target="{% url 'recipes:load_recipes' num_loaded=recipes|length %}">Load More</button>
                 </ul>
             </div>
             
