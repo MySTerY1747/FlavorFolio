@@ -22,4 +22,5 @@ urlpatterns = [
     path("tags/<tag_name>/", views.tag, name="tag"),
     path("load_recipes/<int:num_loaded>", views.load_recipes, name="load_recipes"),
     path("delete_account/", views.delete_account, name="delete_account"),
+    path("delete_recipe/<int:recipe_id>/", views.delete_recipe, name="delete_recipe"),
 ]

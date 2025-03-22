@@ -208,3 +208,33 @@ def delete_account(request):
         user.delete()
         return redirect(reverse("recipes:index"))
     return HttpResponseNotAllowed(["POST"])
+
+
+@login_required
+def delete_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    if request.method == "POST":
+        # Verify user owns the recipe
+        if request.user != recipe.user:
+            return HttpResponse("Unauthorized", status=401)
+
+        recipe.delete()
+        return redirect(reverse("recipes:user_profile"))
+
+    return HttpResponseNotAllowed(["POST"])
+
+
+@login_required
+def delete_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    if request.method == "POST":
+        # Verify user owns the recipe
+        if request.user != recipe.user:
+            return HttpResponse("Unauthorized", status=401)
+
+        recipe.delete()
+        return redirect(reverse("recipes:user_profile"))
+
+    return HttpResponseNotAllowed(["POST"])

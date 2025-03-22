@@ -18,6 +18,16 @@ FlavourFolio - {{ recipe.title }}
 <h1 class="recipe-subtitles">
   Author: <a href="/profile/{{ recipe.user.id }}">{{ recipe.user.username }}</a></h1>
 
+{% if user == recipe.user %}
+<div class="action-buttons">
+    <form action="{% url 'recipes:delete_recipe' recipe.id %}" method="post" 
+          onsubmit="return confirm('Are you 100% sure you want to delete this recipe? This cannot be undone.');">
+        {% csrf_token %}
+        <button type="submit" class="delete-recipe-button">Delete Recipe</button>
+    </form>
+</div>
+{% endif %}
+
 <h1 class="recipe-subtitles">Ingredients:</h1>
 <p>{{ recipe.ingredients }}</p>
 
