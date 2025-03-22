@@ -256,3 +256,62 @@ textarea.comment-input {
     transform: translateY(-3px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
+
+.author-link {
+    color: #555;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(255, 99, 71, 0.3);
+    transition: all 0.2s ease;
+    padding: 0.1em 0.3em;
+    margin-left: 0.3em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+}
+
+.author-link:hover {
+    color: #333;
+    border-bottom-color: tomato;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+}
+
+.author-link i {
+    font-size: 0.7em;
+    color: rgba(255, 99, 71, 0.6);
+    transition: color 0.2s ease;
+}
+
+.author-link:hover i {
+    color: tomato;
+
+
+.comment-author-link {
+    color: #666;
+    text-decoration: none !important;
+    border-bottom: 2px solid rgba(255, 99, 71, 0.4) !important;
+    transition: all 0.2s ease;
+    padding: 0.1em 0.2em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.comment-author-link:hover {
+    color: #444;
+    border-bottom-color: rgba(255, 99, 71, 0.7) !important;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.comment-author-link i {
+    font-size: 0.6em;
+    color: rgba(255, 99, 71, 0.5) !important;
+    border-bottom: 2px solid rgba(255, 99, 71, 0.4) !important;
+    transition: color 0.2s ease;
+}
+
+.comment-author-link:hover i {
+    color: rgba(255, 99, 71, 0.8) !important;
+}
