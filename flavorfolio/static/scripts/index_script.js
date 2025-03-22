@@ -51,7 +51,7 @@ $(document).ready(function () {
           'transform': 'scale(1)',
           'transition': 'transform 0.3s ease',
           'box-shadow': 'none',
-          'background-color': 'inherit'
+          'background-color': 'rgba(255, 255, 255, 0.5)'
         });
       }
     });
@@ -71,7 +71,7 @@ $(document).ready(function () {
         'transform': 'scale(1)',
         'transition': 'transform 0.3s ease',
         'box-shadow': 'none',
-        'background-color': 'inherit'
+        'background-color': 'rgba(255, 255, 255, 0.5)'
       });
     }
   }, ".recipe-list li");
