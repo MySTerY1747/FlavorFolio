@@ -9,6 +9,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to="profile_images", blank=True)
     bio = models.CharField(max_length=500, blank=True)
+
     def __str__(self):
         return f"Profile of {self.user.username}"
 
@@ -18,7 +19,9 @@ class Recipe(models.Model):
     title = models.CharField(max_length=128)
     ingredients = models.TextField()
     instructions = models.TextField()
-    image = models.ImageField(upload_to="recipe_images", blank=True)
+    image = models.ImageField(
+        upload_to="recipe_images", blank=True, default="default-recipe.png"
+    )
     upload_date = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
@@ -43,3 +46,4 @@ class Tag(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+

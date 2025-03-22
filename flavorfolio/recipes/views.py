@@ -68,7 +68,7 @@ def recipe(request, recipe_id):
             },
         )
     except Exception as e:
-        return HttpResponse("404. Recipe not found.")
+        return HttpResponse(e)
 
 
 @login_required
@@ -99,18 +99,18 @@ def profile(request, user_id):
 
 @login_required
 def upload_recipe(request):
-    form = RecipeForm()
     if request.method == "POST":
-        form = RecipeForm(request.POST)
+        form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
             recipe = form.save(commit=False)
             recipe.user = request.user
             recipe.save()
-            return redirect("/recipes/<recipe_id>")
+            return redirect(reverse("recipes:recipe", args=[recipe.id]))
         else:
-            print(form.errors)
-    responce = render(request, "recipes/upload_recipe.html", {"form": form})
-    return responce
+            return HttpResponse(form.errors.as_text())
+    else:
+        response = render(request, "recipes/upload_recipe.html", {"form": RecipeForm()})
+        return response
 
 
 @login_required

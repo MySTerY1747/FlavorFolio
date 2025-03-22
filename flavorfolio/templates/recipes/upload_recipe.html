@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'stylesheets/upload_recipe_styles.css' %}">
     <div class="form-box">
         <h1>Enter Recipe Details:</h1>
-        <form class="recipe-form" method="post" action="/recipe/upload_recipe/">
+        <form class="recipe-form" method="post" action="{% url 'recipes:upload_recipe' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form.visible_fields %}
                 <div class="form-field">
