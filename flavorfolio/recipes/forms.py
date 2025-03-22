@@ -55,3 +55,17 @@ class RecipeImageForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = ("image",)
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ("content",)
+        widgets = {
+            "content": forms.Textarea(
+                attrs={
+                    "class": "comment-input",
+                    "placeholder": "Write your comment here...",
+                }
+            ),
+        }

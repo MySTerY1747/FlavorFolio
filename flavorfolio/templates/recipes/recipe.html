@@ -77,28 +77,57 @@ function toggleImageForm() {
 </div>
 
 <div class="recipe-box">
-<h1 class="recipe-subtitles">Comments</h1>
-{% if recipe.comments.all %}
-
+    <h1 class="recipe-subtitles">Comments</h1>
+    
+    {% if user.is_authenticated %}
+    <div class="comment-action-buttons">
+        <button class="add-comment-button" onclick="toggleCommentForm()">Add Comment</button>
+    </div>
+    
+    <div id="comment-form" style="display: none;">
+        <form method="post" action="{% url 'recipes:add_comment' recipe.id %}" class="comment-form">
+            {% csrf_token %}
+            <textarea class="comment-input" name="content" required></textarea>
+            <div class="form-buttons">
+                <button type="submit" class="form-button submit-button">Post Comment</button>
+                <button type="button" class="form-button cancel-button" onclick="toggleCommentForm()">Cancel</button>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+    
+    {% if recipe.comments.all %}
     {% for comment in recipe.comments.all %}
-    <div class="comment-box">
-    <div class="profile-section">
-        <h3><a class="comment-author-link" href="{% url 'recipes:profile' comment.user.id %}">
-            {{ comment.user.username }}
-            <i class="fas fa-user"></i>
-        </a></h3>
-    </div>
-    <div class="comment-section">
-      {{ comment.content }}
-    </div>
-    </div>
-    {% endfor %}
-
-
-{% else %}
-    <p>There aren't any comments yet.</p>
-{% endif %}
+        <div class="comment-box">
+        <div class="profile-section">
+            <h3><a class="comment-author-link" href="{% url 'recipes:profile' comment.user.id %}">
+                {{ comment.user.username }}
+                <i class="fas fa-user"></i>
+            </a></h3>
+        </div>
+        <div class="comment-section">
+          {{ comment.content }}
+        </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>There aren't any comments yet.</p>
+    {% endif %}
 </div>
+
+<script>
+function toggleCommentForm() {
+    const form = document.getElementById('comment-form');
+    const button = document.querySelector('.add-comment-button');
+    if (form.style.display === 'none') {
+        form.style.display = 'block';
+        button.textContent = 'Cancel';
+    } else {
+        form.style.display = 'none';
+        button.textContent = 'Add Comment';
+    }
+}
+</script>
 
 
 

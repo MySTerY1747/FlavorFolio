@@ -253,3 +253,18 @@ def update_recipe_image(request, recipe_id):
             form.save()
 
     return redirect(reverse("recipes:recipe", args=[recipe_id]))
+
+
+@login_required
+def add_comment(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.recipe = recipe
+            comment.save()
+
+    return redirect(reverse("recipes:recipe", args=[recipe_id]))

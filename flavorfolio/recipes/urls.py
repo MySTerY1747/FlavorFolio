@@ -28,4 +28,5 @@ urlpatterns = [
         views.update_recipe_image,
         name="update_recipe_image",
     ),
+    path("add_comment/<int:recipe_id>/", views.add_comment, name="add_comment"),
 ]
