@@ -21,4 +21,5 @@ urlpatterns = [
     path("search/", views.search, name="search"),
     path("tags/<tag_name>/", views.tag, name="tag"),
     path("load_recipes/<int:num_loaded>", views.load_recipes, name="load_recipes"),
+    path("delete_account/", views.delete_account, name="delete_account"),
 ]

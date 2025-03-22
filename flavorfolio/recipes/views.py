@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from recipes.models import Recipe
 from recipes.forms import *
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponseNotAllowed
 
 
 def index(request):
@@ -197,3 +198,13 @@ def tag(request, tag_name):
     tag = Tag.objects.get(name=tag_name)
     recipes = tag.recipes.all()
     return render(request, "recipes/tag.html", {"tag": tag, "recipes": recipes})
+
+
+@login_required
+def delete_account(request):
+    if request.method == "POST":
+        user = request.user
+        logout(request)
+        user.delete()
+        return redirect(reverse("recipes:index"))
+    return HttpResponseNotAllowed(["POST"])
