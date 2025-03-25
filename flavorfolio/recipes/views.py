@@ -15,7 +15,7 @@ def index(request):
     list_of_recipes = sorted(
         Recipe.objects.all(), key=lambda x: x.upload_date, reverse=True
     )[:5]
-    five_tags = Tag.objects.all()[:5]
+    five_tags = Tag.objects.all()
 
     context_dict["recipes"] = list_of_recipes
     context_dict["tags"] = five_tags
@@ -268,3 +268,20 @@ def add_comment(request, recipe_id):
             comment.save()
 
     return redirect(reverse("recipes:recipe", args=[recipe_id]))
+
+
+@login_required
+def add_tag(request):
+    if request.method == "POST":
+        form = AddTagForm(request.POST)
+        if form.is_valid():
+            try:
+                tag = form.save(commit=False)
+                tag.name = tag.name.title()
+                tag.save()
+                return redirect(reverse("recipes:tag", args=[tag.name]))
+            except Exception as e:
+                form.add_error("name", "This tag already exists!")
+    else:
+        form = AddTagForm()
+    return render(request, "recipes/add_tag.html", {"form": form})

@@ -1,0 +1,25 @@
+{% extends 'recipes/base.html' %}
+{% load static %}
+
+{% block title_block %}Add New Tag{% endblock %}
+
+{% block header_block %}
+<img src="{% static 'images/headers/tag_header.png' %}">
+{% endblock %}
+
+{% block body_block %}
+<link rel="stylesheet" href="{% static 'stylesheets/tag_styles.css' %}">
+
+<div class="form-box">
+    <h1>Create New Tag</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-field">
+            <span class="help-text">{{ form.name.help_text }}</span>
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+        <button type="submit">Create Tag</button>
+    </form>
+</div>
+{% endblock %}

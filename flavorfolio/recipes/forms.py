@@ -69,3 +69,10 @@ class CommentForm(forms.ModelForm):
                 }
             ),
         }
+
+
+class AddTagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = ["name"]
+        help_texts = {"name": "Enter a new tag name:"}
