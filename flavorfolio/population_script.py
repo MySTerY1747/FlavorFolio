@@ -179,7 +179,7 @@ tags = [
     {"name": "Chicken", "recipe_indices": [3, 4]},
     {"name": "Beef", "recipe_indices": [5, 10]},
     {"name": "Pork", "recipe_indices": [8, 9]},
-    {"name": "Pasta", "recipe_indices": [3, 11, 12, 13]},
+    {"name": "Pasta", "recipe_indices": [3, 12, 13]},
     {"name": "Rice", "recipe_indices": [6, 7]},
     {"name": "Mushrooms", "recipe_indices": [2, 7, 13]},
     {"name": "Lemon", "recipe_indices": [4, 8, 9]},
@@ -189,7 +189,7 @@ tags = [
     {"name": "Mexican", "recipe_indices": [11]},
     {"name": "Italian", "recipe_indices": [12]},
     {"name": "Asian", "recipe_indices": [13]},
-    {"name": "Noodles", "recipe_indices": [12, 13]},
+    {"name": "Noodles", "recipe_indices": [13]},
 ]
 
 comments = [
