@@ -7,7 +7,6 @@
 <img src="{% static 'images/headers/homepage_header.png'%}"/>
 {% endblock %}
 
-
 {% block body_block %}
 <link rel="stylesheet" href="{% static 'stylesheets/upload_recipe_styles.css' %}">
 
@@ -17,11 +16,14 @@
         {% csrf_token %}
         <div class="form-field">
             <span class="help-text">{{ form.existing_tags.help_text }}</span>
-            <ul class="checkbox-list">
-                {% for checkbox in form.existing_tags %}
-                    <li>{{ checkbox }}</li>
+            <div class="tag-checkboxes">
+                {% for tag in form.existing_tags %}
+                    <label class="tag-checkbox">
+                        {{ tag.tag }}
+                        <span class="custom-checkbox">{{ tag.choice_label }}</span>
+                    </label>
                 {% endfor %}
-            </ul>
+            </div>
             {{ form.existing_tags.errors }}
         </div>
         <div class="form-field">
