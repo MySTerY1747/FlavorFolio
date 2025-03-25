@@ -7,6 +7,7 @@ from recipes.models import Recipe
 from recipes.forms import *
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseNotAllowed
+from django.db.models import Q
 
 
 def index(request):
@@ -181,27 +182,30 @@ def user_login(request):
 
 def search(request):
     search_query = " ".join(request.GET.get("search_query", "").split())
-    tag = request.GET.get("tag", "")
-    results_set = set()
-    if search_query:
-        title_matches = Recipe.objects.filter(title__icontains=search_query)
-        tag_matches = Tag.objects.filter(name__icontains=search_query)
-        tag_recipes = Recipe.objects.filter(
-            id__in=tag_matches.values_list("recipes", flat=True)
-        )
-        results_set.update(title_matches)
-        results_set.update(tag_recipes)
+    selected_tags = request.GET.getlist("tags")
 
-    results = (
-        [(recipe, Tag.objects.filter(recipes=recipe)) for recipe in results_set]
-        if results_set
-        else None
-    )
+    results = Recipe.objects.all()
+
+    if search_query:
+        results = results.filter(
+            Q(title__icontains=search_query) | Q(tag__name__icontains=search_query)
+        ).distinct()
+
+    if selected_tags:
+        for tag_name in selected_tags:
+            results = results.filter(tag__name=tag_name)
+
+    results = results.distinct()
 
     return render(
         request,
         "recipes/search.html",
-        {"results": results, "search_query": search_query, "tags": tag},
+        {
+            "results": [(r, r.tag_set.all()) for r in results],
+            "search_query": search_query,
+            "all_tags": Tag.objects.all(),
+            "selected_tags": selected_tags,
+        },
     )
 
 

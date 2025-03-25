@@ -19,23 +19,20 @@
         <form class="recipe-form" method="post" action="{% url 'recipes:upload_recipe' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
-                {% if field.name == 'existing_tags' %}
-                    <div class="form-field">
-                        <span class="help-text">{{ field.help_text }}</span>
-                        <ul class="checkbox-list">
-                            {% for checkbox in field %}
-                                <li>{{ checkbox }}</li>
-                            {% endfor %}
-                        </ul>
-                        {{ field.errors }}
-                    </div>
-                {% else %}
-                    <div class="form-field">
-                        <span class="help-text">{{ field.help_text }}</span>
-                        {{ field }}
-                        {{ field.errors }}
-                    </div>
-                {% endif %}
+              {% if field.name == 'existing_tags' %}
+                  <div class="form-field">
+                      <span class="help-text">{{ field.help_text }}</span>
+                      <div class="tag-checkboxes">
+                          {% for tag in field %}
+                              <label class="tag-checkbox">
+                                  {{ tag.tag }}
+                                  <span class="custom-checkbox">{{ tag.choice_label }}</span>
+                              </label>
+                          {% endfor %}
+                      </div>
+                      {{ field.errors }}
+                  </div>
+              {% endif %}
             {% endfor %}
             
             <button type="submit">Submit</button>

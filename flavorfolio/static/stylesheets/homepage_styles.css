@@ -242,3 +242,24 @@ h3:after {
         width: 100%;
     }
 }
+
+.tag-add-button {
+    display: inline-block;
+    margin-top: 1em;
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white !important;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.tag-add-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.tag-add-button i {
+    margin-right: 5px;
+}

@@ -11,18 +11,22 @@
 
 {% block body_block %}
 <link rel="stylesheet" href="{% static 'stylesheets/search_styles.css' %}">
-    <div class="search-bar">
-
+<div class="search-bar">
     <form method="GET" action="{% url 'recipes:search' %}">
         <input type="text" name="search_query" placeholder="Search Recipes..." value="{{ search_query }}">
+        <div class="tag-filters">
+            <h4>Filter by Tags:</h4>
+            {% for tag in all_tags %}
+                <label class="tag-filter">
+                    <input type="checkbox" name="tags" value="{{ tag.name }}" 
+                        {% if tag.name in selected_tags %}checked{% endif %}>
+                    {{ tag.name }}
+                </label>
+            {% endfor %}
+        </div>
         <button type="submit">Search</button>
     </form>
-
-    <form method="GET" action="{% url 'recipes:search' %}">
-        <input type="text" name="tag" placeholder="Add Tag..." value="{{ tag }}">
-        <button type="submit">Add Tag</button>
-    </form>
-    </div>
+</div>
 <div class="search-results-box" >
 <ul class="recipe-list">
 {% if search_query %}
@@ -41,7 +45,7 @@
 
           <div class="tag-section">
               <h3>Recipe Tags:</h3>
-              {% for tag in result.1 %}
+              {% for tag in result.0.tag_set.all %}
               <div class="tag-box"><a href="{% url 'recipes:tag' tag.name %}">• {{ tag.name }}</a></div>
               {% endfor %}
           </div>

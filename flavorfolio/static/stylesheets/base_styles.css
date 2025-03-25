@@ -182,3 +182,57 @@ input:focus, select:focus, textarea:focus {
   border-color: #f8e887;
   box-shadow: 0 0 0 2px rgba(248, 232, 135, 0.3);
 }
+
+.checkbox-list {
+    list-style: none;
+    padding: 0;
+    column-count: 2;
+}
+
+.checkbox-list li {
+    margin: 8px 0;
+    break-inside: avoid;
+}
+
+.checkbox-list li label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.tag-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-checkbox {
+    position: relative;
+    cursor: pointer;
+}
+
+.tag-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.custom-checkbox {
+    display: block;
+    padding: 8px 15px;
+    background: rgba(240, 230, 140, 0.3);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.tag-checkbox input:checked ~ .custom-checkbox {
+    background: #f8e887;
+    border-color: #f5e16d;
+    font-weight: 600;
+}
+
+.tag-checkbox:hover .custom-checkbox {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}

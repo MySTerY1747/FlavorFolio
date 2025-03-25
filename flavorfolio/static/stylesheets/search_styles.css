@@ -238,3 +238,26 @@
         text-align: center;
     }
 }
+
+.tag-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.tag-filter {
+    background: rgba(240, 230, 140, 0.3);
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.tag-filter:hover {
+    background: rgba(240, 230, 140, 0.5);
+    transform: translateY(-2px);
+}
+
+.tag-filter input[type="checkbox"] {
+    margin-right: 8px;
+}
