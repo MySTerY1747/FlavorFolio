@@ -26,7 +26,6 @@ users = [
         "bio": "I am a home cook",
         "image_path": "population_script_images/marina.jpg",
     },
-    # New users
     {
         "username": "Dimitri",
         "email": "dimitri@greekfood.com",
@@ -44,6 +43,30 @@ users = [
         "email": "veganchef@greens.com",
         "bio": "Creating plant-based versions of classic recipes",
         "image_path": "population_script_images/veganchef.jpg",
+    },
+    {
+        "username": "AmericanFoodie",
+        "email": "burger_lover@email.com",
+        "bio": "Comfort food enthusiast and home cook",
+        "image_path": "population_script_images/american_foodie.jpg",
+    },
+    {
+        "username": "MexicanCuisine",
+        "email": "quesadilla_master@email.com",
+        "bio": "Passionate about authentic Mexican cooking",
+        "image_path": "population_script_images/mexican_cuisine.jpg",
+    },
+    {
+        "username": "ItalianChef",
+        "email": "pasta_pro@email.com",
+        "bio": "Bringing authentic Italian flavors to the home kitchen",
+        "image_path": "population_script_images/italian_chef.jpg",
+    },
+    {
+        "username": "AsianFusion",
+        "email": "noodle_master@email.com",
+        "bio": "Exploring and mixing Asian culinary traditions",
+        "image_path": "population_script_images/asian_fusion.jpg",
     },
 ]
 
@@ -119,63 +142,54 @@ recipes = [
         "instructions": "- Season pork chops with salt, pepper, and a little oil.\n - Lightly cook them in a pan until they get some color.\n - Cut a lemon and squeeze the juice into a baking tray.\n - Add oil, mustard, oregano, and 2 cloves of garlic.\n - Cut potatoes into smaller pieces.\n - Add salt and pepper.\n - Mix everything.\n - Cut a lemon into slices.\n - Place 2 lemon slices and some rosemary between pork chops like a sandwich, and tie with string.\n - Cover baking tray with aluminum foil.\n - Bake in a preheated oven at 180°C for 1.5 hours with foil, and another half hour without.",
         "image_path": "population_script_images/lemon-pork-chops.jpg",
     },
+    {
+        "user_index": 6,  # AmericanFoodie
+        "title": "Sloppy Joe Burger",
+        "ingredients": "- 150 grams ground beef\n - 1 onion\n - 1 bell pepper\n - Ketchup\n - Mustard\n - Garlic powder\n - Salt\n - 2 hamburger buns",
+        "instructions": "- Cook ground beef in a pan for 3 to 4 minutes\n - Add onions and pepper, continue frying for about 5 minutes\n - Transfer to a bowl, add ketchup, mustard, garlic powder, salt, and spices\n - Fill hamburger buns with the mixture",
+        "image_path": "population_script_images/sloppy_joe.jpg",
+    },
+    {
+        "user_index": 7,  # MexicanCuisine
+        "title": "Classic Quesadilla",
+        "ingredients": "- Tortillas\n - Shredded cheese\n - Optional: Cooked meat\n - Optional: Beans\n - Optional: Vegetables",
+        "instructions": "- Place tortilla in a frying pan\n - Add cheese to melt\n - Add optional beans, vegetables, or pre-cooked meat\n - Flip and fry until cheese is fully melted",
+        "image_path": "population_script_images/quesadilla.jpg",
+    },
+    {
+        "user_index": 8,  # ItalianChef
+        "title": "Spaghetti Aglio e Olio",
+        "ingredients": "- Spaghetti\n - Olive oil\n - Garlic\n - Chili flakes\n - Salt\n - Parsley (optional)",
+        "instructions": "- Boil pasta for 10 minutes\n - In a pan, sauté garlic in olive oil\n - Add chili flakes\n - Drain pasta and add to the pan\n - Toss and add some pasta water if needed\n - Garnish with parsley if desired",
+        "image_path": "population_script_images/aglio_olio.jpg",
+    },
+    {
+        "user_index": 9,  # AsianFusion
+        "title": "Vegetable Stir-Fry Noodles",
+        "ingredients": "- 200g mushrooms\n - 1/2 red bell pepper\n - 1/2 green bell pepper\n - 1/2 zucchini\n - 1 onion\n - 3 tbsp olive oil\n - 1 garlic clove\n - 250g egg noodles\n - 70g sweet and sour sauce\n - 100g soy sauce\n - 20g sesame seeds\n - Fresh mint\n - Fresh coriander\n - 2 spring onions",
+        "instructions": "- Chop peppers, mushrooms, garlic, zucchini, and onion into small pieces\n - Stir-fry vegetables in batches in a hot pan\n - Boil noodles\n - Add sweet and sour and soy sauce to vegetables\n - Add noodles to the pan and mix\n - Garnish with sesame seeds, mint, and coriander",
+        "image_path": "population_script_images/stir_fry_noodles.jpg",
+    },
 ]
 
 tags = [
-    {
-        "name": "Greek",
-        "recipe_indices": [0, 1, 2, 3, 4, 5, 8, 9],
-    },
-    {
-        "name": "Vegetarian",
-        "recipe_indices": [0, 1, 2, 6],
-    },
-    {
-        "name": "Vegan",
-        "recipe_indices": [0, 2, 6],
-    },
-    {
-        "name": "Chicken",
-        "recipe_indices": [3, 4],  # Youvetsi and Lemon Chicken
-    },
-    {
-        "name": "Beef",
-        "recipe_indices": [5],  # Moshari Kokkinisto
-    },
-    {
-        "name": "Pork",
-        "recipe_indices": [8, 9],  # Tigania and Lemony Pork Chops
-    },
-    {
-        "name": "Pasta",
-        "recipe_indices": [3],  # Youvetsi (has orzo pasta)
-    },
-    {
-        "name": "Rice",
-        "recipe_indices": [6, 7],  # Bean Burritos and Mushroom Risotto
-    },
-    {
-        "name": "Mushrooms",
-        "recipe_indices": [2, 7],  # Kokkinisti Tigania Manitarion and Mushroom Risotto
-    },
-    {
-        "name": "Lemon",
-        "recipe_indices": [4, 8, 9],  # Lemon Chicken, Tigania, and Lemony Pork Chops
-    },
-    {
-        "name": "Quick Meal",
-        "recipe_indices": [1, 6],  # Greek Salad and Bean Burritos
-    },
-    {
-        "name": "Slow Cook",
-        "recipe_indices": [
-            0,
-            3,
-            5,
-            8,
-            9,
-        ],  # Fasolada, Youvetsi, Moshari Kokkinisto, Tigania, Lemony Pork Chops
-    },
+    {"name": "Greek", "recipe_indices": [0, 1, 2, 3, 4, 5, 8, 9]},
+    {"name": "Vegetarian", "recipe_indices": [0, 1, 2, 6, 13]},
+    {"name": "Vegan", "recipe_indices": [0, 2, 6]},
+    {"name": "Chicken", "recipe_indices": [3, 4]},
+    {"name": "Beef", "recipe_indices": [5, 10]},
+    {"name": "Pork", "recipe_indices": [8, 9]},
+    {"name": "Pasta", "recipe_indices": [3, 11, 12, 13]},
+    {"name": "Rice", "recipe_indices": [6, 7]},
+    {"name": "Mushrooms", "recipe_indices": [2, 7, 13]},
+    {"name": "Lemon", "recipe_indices": [4, 8, 9]},
+    {"name": "Quick Meal", "recipe_indices": [1, 6, 10, 11, 12, 13]},
+    {"name": "Slow Cook", "recipe_indices": [0, 3, 5, 8, 9]},
+    {"name": "American", "recipe_indices": [10]},
+    {"name": "Mexican", "recipe_indices": [11]},
+    {"name": "Italian", "recipe_indices": [12]},
+    {"name": "Asian", "recipe_indices": [13]},
+    {"name": "Noodles", "recipe_indices": [12, 13]},
 ]
 
 comments = [
@@ -249,6 +263,26 @@ comments = [
         "user_index": 0,
         "recipe_index": 8,
     },
+    {
+        "content": "Perfect for a quick weeknight dinner! Kids loved it!",
+        "user_index": 2,
+        "recipe_index": 10,
+    },
+    {
+        "content": "Pro tip: Add some avocado on top for extra creaminess!",
+        "user_index": 7,
+        "recipe_index": 11,
+    },
+    {
+        "content": "The simplicity of this pasta is what makes it so delicious!",
+        "user_index": 3,
+        "recipe_index": 12,
+    },
+    {
+        "content": "This stir-fry is now my go-to quick meal. So flavorful!",
+        "user_index": 8,
+        "recipe_index": 13,
+    },
 ]
 
 
@@ -256,14 +290,12 @@ def add_user(user_dict):
     user_model = User.objects.get_or_create(
         username=user_dict["username"], email=user_dict["email"]
     )[0]
-
     with open(user_dict["image_path"], "rb") as f:
         user = UserProfile.objects.get_or_create(
             user=user_model,
             bio=user_dict["bio"],
             picture=File(f, name=os.path.basename(user_dict["image_path"])),
         )[0]
-
     user.save()
     return user
 
@@ -277,7 +309,7 @@ def add_recipe(recipe_dict):
             instructions=recipe_dict["instructions"],
             image=File(f, name=os.path.basename(recipe_dict["image_path"])),
         )[0]
-        recipe.save()
+    recipe.save()
     return recipe
 
 
@@ -304,7 +336,6 @@ def add_users(users_dict):
     try:
         for user_dict in users_dict:
             add_user(user_dict)
-
         bob = User.objects.get(username="Bob the chef")
         assert bob.userprofile.bio == "I am yet another chef"
         print("• Users added successfully ✅")
@@ -319,11 +350,8 @@ def add_recipes(recipes_dict):
     try:
         for recipe_dict in recipes_dict:
             add_recipe(recipe_dict)
-
-        tigania = Recipe.objects.get(
-            title="Kokkinisti Tigania Manitarion (Greek Mushroom Sauté in Tomato Sauce)"
-        )
-        assert tigania.user.username == "Marina the home cook"
+        sloppy_joe = Recipe.objects.get(title="Sloppy Joe Burger")
+        assert sloppy_joe.user.username == "AmericanFoodie"
         print("• Recipes added successfully ✅")
         return True
     except Exception as e:
@@ -336,7 +364,6 @@ def add_comments(comments_dict):
     try:
         for comment_dict in comments_dict:
             add_comment(comment_dict)
-
         first_comment = Comment.objects.get(
             content="Whoa! That looks amazing! I'll have to try it out soon."
         )
@@ -353,7 +380,6 @@ def add_tags(tags_dict):
     try:
         for tag_dict in tags_dict:
             add_tag(tag_dict)
-
         greek_tag = Tag.objects.get(name="Greek")
         assert greek_tag.recipes.count() == 8
         print("• Tags added successfully ✅")
@@ -381,7 +407,6 @@ def clear_database():
 
 if __name__ == "__main__":
     clear_database()
-
     add_users(users)
     add_recipes(recipes)
     add_comments(comments)
