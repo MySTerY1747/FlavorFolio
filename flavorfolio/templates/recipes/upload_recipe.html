@@ -18,25 +18,25 @@
         <h1>Enter Recipe Details:</h1>
         <form class="recipe-form" method="post" action="{% url 'recipes:upload_recipe' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            {% for field in form %}
-              {% if field.name == 'existing_tags' %}
-                  <div class="form-field">
-                      <span class="help-text">{{ field.help_text }}</span>
-                      <div class="tag-checkboxes">
-                          {% for tag in field %}
-                              <label class="tag-checkbox">
-                                  {{ tag.tag }}
-                                  <span class="custom-checkbox">{{ tag.choice_label }}</span>
-                              </label>
-                          {% endfor %}
-                      </div>
-                      {{ field.errors }}
-                  </div>
-              {% endif %}
+            {% for field in form.visible_fields %}
+                <div class="form-field">
+                    <span class="help-text">{{ field.help_text }}</span>
+                    {% if field.name == 'existing_tags' %}
+                        <div class="tag-checkboxes">
+                            {% for tag in field %}
+                                <label class="tag-checkbox">
+                                    {{ tag.tag }}
+                                    <span class="custom-checkbox">{{ tag.choice_label }}</span>
+                                </label>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                    {{ field.errors }}
+                </div>
             {% endfor %}
-            
             <button type="submit">Submit</button>
         </form>
-
     </div>
 {% endblock %}
