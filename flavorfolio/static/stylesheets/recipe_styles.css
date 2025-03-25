@@ -508,3 +508,12 @@ input[type="file"]:hover {
     display: flex;
     justify-content: center;
 }
+
+.checkbox-list {
+    list-style: none;
+    padding: 0;
+    column-count: 2;
+}
+.checkbox-list li {
+    margin: 5px 0;
+}

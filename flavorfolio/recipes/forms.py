@@ -5,24 +5,26 @@ from django.contrib.auth.models import User
 
 class RecipeForm(forms.ModelForm):
     title = forms.CharField(max_length=128, help_text="Enter Recipe Name: ")
-
     ingredients = forms.CharField(
         widget=forms.Textarea, help_text="Enter Recipe Ingredients: "
     )
-
     instructions = forms.CharField(
         widget=forms.Textarea, help_text="Enter Instructions: "
     )
-
-    tags = forms.CharField(
-        widget=forms.Textarea, help_text="Enter Recipe Tags (separated by commas): "
+    existing_tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        help_text="Select existing tags:",
     )
-
+    new_tags = forms.CharField(
+        max_length=255, required=False, help_text="Add new tags (comma-separated):"
+    )
     image = forms.ImageField(help_text="Upload Recipe Image: ", required=False)
 
     class Meta:
         model = Recipe
-        fields = ("title", "ingredients", "instructions", "tags", "image")
+        fields = ("title", "ingredients", "instructions", "image")
 
 
 class EditBioForm(forms.ModelForm):

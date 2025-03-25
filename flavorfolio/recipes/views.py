@@ -106,12 +106,23 @@ def upload_recipe(request):
             recipe = form.save(commit=False)
             recipe.user = request.user
             recipe.save()
+
+            # Add existing tags
+            for tag in form.cleaned_data["existing_tags"]:
+                tag.recipes.add(recipe)
+
+            # Add new tags
+            if form.cleaned_data["new_tags"]:
+                for tag_name in [
+                    name.strip() for name in form.cleaned_data["new_tags"].split(",")
+                ]:
+                    tag, created = Tag.objects.get_or_create(name=tag_name.title())
+                    tag.recipes.add(recipe)
+
             return redirect(reverse("recipes:recipe", args=[recipe.id]))
-        else:
-            return HttpResponse(form.errors.as_text())
     else:
-        response = render(request, "recipes/upload_recipe.html", {"form": RecipeForm()})
-        return response
+        form = RecipeForm()
+    return render(request, "recipes/upload_recipe.html", {"form": form})
 
 
 @login_required
