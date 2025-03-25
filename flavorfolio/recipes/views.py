@@ -296,3 +296,27 @@ def add_tag(request):
     else:
         form = AddTagForm()
     return render(request, "recipes/add_tag.html", {"form": form})
+
+
+@login_required
+def add_tags(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    if request.method == "POST":
+        form = AddTagsForm(request.POST)
+        if form.is_valid():
+            # Add existing tags
+            for tag in form.cleaned_data["existing_tags"]:
+                tag.recipes.add(recipe)
+
+            # Add new tags
+            if form.cleaned_data["new_tags"]:
+                for tag_name in [
+                    name.strip() for name in form.cleaned_data["new_tags"].split(",")
+                ]:
+                    tag, created = Tag.objects.get_or_create(name=tag_name.title())
+                    tag.recipes.add(recipe)
+
+            return redirect(reverse("recipes:recipe", args=[recipe_id]))
+    else:
+        form = AddTagsForm()
+    return render(request, "recipes/add_tags.html", {"form": form, "recipe": recipe})

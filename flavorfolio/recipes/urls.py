@@ -30,4 +30,5 @@ urlpatterns = [
     ),
     path("add_comment/<int:recipe_id>/", views.add_comment, name="add_comment"),
     path("add_tag/", views.add_tag, name="add_tag"),
+    path("recipe/<int:recipe_id>/add_tags/", views.add_tags, name="add_tags"),
 ]

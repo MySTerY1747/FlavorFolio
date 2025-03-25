@@ -22,6 +22,15 @@ FlavourFolio - {{ recipe.title }}
     <i class="fas fa-external-link-alt"></i>
   </a>
 </h1>
+
+{% if user.is_authenticated %}
+<div class="action-buttons">
+    <a href="{% url 'recipes:add_tags' recipe.id %}">
+        <button class="update-image-button">Add Tags</button>
+    </a>
+</div>
+{% endif %}
+
 {% if user == recipe.user %}
 <div class="action-buttons">
     <button class="update-image-button" onclick="toggleImageForm()">Update Image</button>

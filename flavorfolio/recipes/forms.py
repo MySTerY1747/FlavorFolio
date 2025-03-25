@@ -78,3 +78,15 @@ class AddTagForm(forms.ModelForm):
         model = Tag
         fields = ["name"]
         help_texts = {"name": "Enter a new tag name:"}
+
+
+class AddTagsForm(forms.Form):
+    existing_tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        help_text="Select existing tags:",
+    )
+    new_tags = forms.CharField(
+        max_length=255, required=False, help_text="Add new tags (comma-separated):"
+    )
