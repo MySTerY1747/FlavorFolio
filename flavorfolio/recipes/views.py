@@ -290,6 +290,8 @@ def add_tag(request):
             try:
                 tag = form.save(commit=False)
                 tag.name = tag.name.title()
+                if tag.name in [t.name for t in Tag.objects.all()]:
+                    return HttpResponse("This tag already exists")
                 tag.save()
                 return redirect(reverse("recipes:tag", args=[tag.name]))
             except Exception as e:
