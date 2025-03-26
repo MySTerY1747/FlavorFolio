@@ -16,6 +16,7 @@ def add_recipe(title, ingredients="", instructions=""):
 
 class AuthenticationTests(TestCase):
     def test_user_registration(self):
+        """Check that user registration works correctly"""
         data = {
             "username": "newuser",
             "email": "new@example.com",
@@ -27,6 +28,7 @@ class AuthenticationTests(TestCase):
         self.assertTrue(UserProfile.objects.filter(user__username="newuser").exists())
 
     def test_user_login(self):
+        """test user login works"""
         User.objects.create_user(username="testuser", password="testpass")
         response = self.client.post(
             reverse("recipes:login"), {"username": "testuser", "password": "testpass"}
@@ -35,6 +37,7 @@ class AuthenticationTests(TestCase):
         self.assertTrue(response.wsgi_request.user.is_authenticated)
 
     def test_user_logout(self):
+        """test user logout works"""
         User.objects.create_user(username="testuser", password="testpass")
         self.client.login(username="testuser", password="testpass")
         response = self.client.get(reverse("recipes:logout"))
@@ -43,6 +46,7 @@ class AuthenticationTests(TestCase):
 
 
 class RecipeTests(TestCase):
+    #  Helper function
     def setUp(self):
         self.user = User.objects.create_user(username="testuser", password="testpass")
         UserProfile.objects.get_or_create(user=self.user)
@@ -54,6 +58,7 @@ class RecipeTests(TestCase):
         )
 
     def test_recipe_upload_date(self):
+        """check signed in users can delete their own recipes"""
         self.assertEqual(
             datetime.now().strftime("%x"), self.recipe.upload_date.strftime("%x")
         )
@@ -67,6 +72,7 @@ class RecipeTests(TestCase):
         self.assertFalse(Recipe.objects.filter(id=self.recipe.id).exists())
 
     def test_unauthorized_recipe_deletion(self):
+        """check only recipe owners can delete their recipes"""
         User.objects.create_user(username="otheruser", password="testpass")
         # Also create a UserProfile for the other user
         UserProfile.objects.get_or_create(user=User.objects.get(username="otheruser"))
@@ -79,17 +85,20 @@ class RecipeTests(TestCase):
 
 
 class ProfileTests(TestCase):
+    #  Helper
     def setUp(self):
         self.user = User.objects.create_user(username="testuser", password="testpass")
         self.profile = UserProfile.objects.create(user=self.user, bio="Original Bio")
 
     def test_profile_display(self):
+        """ "Test user profile page and view work correctly"""
         self.client.login(username="testuser", password="testpass")
         response = self.client.get(reverse("recipes:user_profile"))
         self.assertContains(response, "testuser")
         self.assertContains(response, "Original Bio")
 
     def test_edit_bio(self):
+        """Test that users can edit their bio"""
         self.client.login(username="testuser", password="testpass")
         new_bio = "Updated Bio Content"
         response = self.client.post(reverse("recipes:edit_bio"), {"bio": new_bio})
@@ -99,13 +108,14 @@ class ProfileTests(TestCase):
 
 
 class TagTests(TestCase):
+    #  Helper
     def setUp(self):
         self.user = User.objects.create_user(username="testuser", password="testpass")
-        # Ensure UserProfile is created
         UserProfile.objects.get_or_create(user=self.user)
         self.client.login(username="testuser", password="testpass")
 
     def test_add_tag(self):
+        """check signed in users can create tag, and it redirects to tag page"""
         response = self.client.post(
             reverse("recipes:add_tag"), {"name": "Newtag".title()}
         )
@@ -113,6 +123,7 @@ class TagTests(TestCase):
         self.assertTrue(Tag.objects.filter(name="Newtag".title()).exists())
 
     def test_add_duplicate_tag(self):
+        """test no duplicate tags are created"""
         Tag.objects.create(name="Existingtag".title())
         response = self.client.post(
             reverse("recipes:add_tag"), {"name": "Existingtag".title()}
@@ -125,6 +136,7 @@ class TagTests(TestCase):
             self.assertFalse(Tag.objects.filter(name="Existingtag".title()).count() > 1)
 
     def test_add_tags_to_recipe(self):
+        """test adding new tags to recipes (god this took forever to get working)"""
         recipe = Recipe.objects.create(user=self.user, title="Test Recipe")
         existing_tag = Tag.objects.create(name="Existingtag".title())
         response = self.client.post(
