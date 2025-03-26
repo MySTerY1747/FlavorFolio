@@ -46,6 +46,22 @@ class AuthenticationTests(TestCase):
         self.assertRedirects(response, reverse("recipes:index"))
         self.assertFalse(response.wsgi_request.user.is_authenticated)
 
+    def test_register_with_existing_username(self):
+        """Test registration with duplicate username fails"""
+        User.objects.create_user(username="existing", password="testpass")
+        response = self.client.post(
+            reverse("recipes:register"),
+            {
+                "username": "existing",
+                "email": "test@example.com",
+                "password": "testpass",
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            "A user with that username already exists.", response.content.decode()
+        )
+
 
 class RecipeTests(TestCase):
     def setUp(self):

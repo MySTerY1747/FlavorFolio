@@ -35,8 +35,6 @@ def register(request):
             UserProfile.objects.create(user=user)
             login(request, user)
             return redirect(reverse("recipes:profile", args=[user.id]))
-        else:
-            form = RegistrationForm()
     return render(request, "recipes/register.html", {"form": form})
 
 

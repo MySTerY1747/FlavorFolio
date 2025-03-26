@@ -1,6 +1,7 @@
 {% extends 'recipes/base.html' %}  
 {% load static %}
 {% block title_block %}
+    Register
 {% endblock %}
 
 {% block header_block %}
@@ -13,7 +14,35 @@
     <h2>Register Here:</h2>
     <form method="post" action="{% url 'recipes:register' %}">
       {% csrf_token %}
-      {{ form.as_p }}
+      
+      {% if form.errors %}
+      <div class="form-errors">
+        <p>Please correct the following errors:</p>
+        <ul>
+          {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      
+      <div class="form-field">
+        <label for="id_username">Username:</label>
+        {{ form.username }}
+      </div>
+      
+      <div class="form-field">
+        <label for="id_email">Email:</label>
+        {{ form.email }}
+      </div>
+      
+      <div class="form-field">
+        <label for="id_password">Password:</label>
+        {{ form.password }}
+      </div>
+      
       <button type="submit">Register</button>
     </form>
   </div>
