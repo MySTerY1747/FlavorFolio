@@ -184,17 +184,19 @@ def search(request):
     search_query = " ".join(request.GET.get("search_query", "").split())
     selected_tags = request.GET.getlist("tags")
 
-    results = Recipe.objects.all()
-
+    results = Recipe.objects.all().prefetch_related('tag_set')
+    
     if search_query:
         results = results.filter(
-            Q(title__icontains=search_query) | Q(tag__name__icontains=search_query)
-        ).distinct()
-
+            Q(title__icontains=search_query) | 
+            Q(tag__name__icontains=search_query)
+        )
+    
     if selected_tags:
+       
         for tag_name in selected_tags:
-            results = results.filter(tag__name=tag_name)
-
+            results = results.filter(tag__name__in=selected_tags)
+        
     results = results.distinct()
 
     return render(
@@ -205,7 +207,7 @@ def search(request):
             "search_query": search_query,
             "all_tags": Tag.objects.all(),
             "selected_tags": selected_tags,
-        },
+        }
     )
 
 
