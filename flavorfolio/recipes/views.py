@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -36,7 +36,6 @@ def register(request):
             login(request, user)
             return redirect(reverse("recipes:profile", args=[user.id]))
         else:
-            print(form.errors)
             form = RegistrationForm()
     return render(request, "recipes/register.html", {"form": form})
 
@@ -70,7 +69,7 @@ def recipe(request, recipe_id):
             },
         )
     except Exception as e:
-        return HttpResponse(e)
+        return HttpResponseNotFound("Recipe not found.")
 
 
 @login_required
@@ -136,8 +135,6 @@ def edit_bio(request):
             user_profile.bio = bio
             user_profile.save()
             return redirect(reverse("recipes:user_profile"))
-        else:
-            print(form.errors)
     else:
         return render(request, "recipes/edit_bio.html", {"form": EditBioForm()})
 
