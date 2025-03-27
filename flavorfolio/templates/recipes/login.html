@@ -1,5 +1,6 @@
 {% extends 'recipes/base.html' %}  
 {% load static %}
+
 {% block title_block %}
     Login
 {% endblock %}
@@ -12,6 +13,11 @@
   <link rel="stylesheet" href="{% static 'stylesheets/login_styles.css' %}">
   <div class="register-box">
     <h2>Login Here:</h2>
+
+    {% if error_message %}
+      <p class="error-message">{{ error_message }}</p>
+    {% endif %}
+
     <form method="post" action="{% url 'recipes:login' %}">
         {% csrf_token %}
         Username: <input type="text" name="username" value="" size="50" />
