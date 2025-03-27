@@ -2,7 +2,11 @@
 {% load static %}
 
 {% block title_block %}
-    FlavourFolio - {{ search.search_query }}
+  {% if search_query %}
+  {{ search_query }}
+  {% else %}
+  Search
+  {% endif %}
 {% endblock %}
 
 {% block header_block %}
