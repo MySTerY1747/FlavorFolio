@@ -256,6 +256,19 @@ class ViewTests(TestCase):
         self.assertContains(response, "Test Recipe")
 
     def test_search_view(self):
+        tag = Tag.objects.create(name="Dessert")
+        user, created = User.objects.get_or_create(username="testuser")
+        if created:
+            user.set_password("12345")
+            user.save()
+            
+        recipe = Recipe.objects.create(
+            title="Test Recipe",
+            user=user,
+            ingredients="Flour, Sugar",
+            instructions="Mix and bake"
+        )
+        tag.recipes.add(recipe)
         response = self.client.get(reverse("recipes:search"), {"search_query": "Test"})
         self.assertContains(response, "Test Recipe")
 
@@ -293,3 +306,85 @@ class ModelTests(TestCase):
         self.assertTrue(
             UserProfile.objects.filter(user__username="signaluser").exists()
         )
+        
+
+class CoveragePatchTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="testuser", password="testpass")
+        self.client.login(username="testuser", password="testpass")
+        self.profile = UserProfile.objects.get_or_create(user=self.user)[0]
+        self.recipe = Recipe.objects.create(
+            user=self.user, title="Test Recipe", ingredients="stuff", instructions="do it"
+        )
+        self.tag = Tag.objects.create(name="Dessert")
+
+    def test_upload_recipe_valid(self):
+        data = {
+            "title": "Brownie",
+            "ingredients": "Chocolate",
+            "instructions": "Mix and bake",
+            "new_tags": "Sweet",
+            "existing_tags": [self.tag.id]
+        }
+        response = self.client.post(reverse("recipes:upload_recipe"), data)
+        self.assertEqual(response.status_code, 302)
+
+    def test_upload_recipe_invalid(self):
+        response = self.client.post(reverse("recipes:upload_recipe"), {})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("This field is required", response.content.decode())
+
+    def test_edit_bio_get(self):
+        response = self.client.get(reverse("recipes:edit_bio"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "name=\"bio\"")
+
+    def test_invalid_login(self):
+        response = self.client.post(reverse("recipes:login"), {
+            "username": "wronguser",
+            "password": "wrongpass"
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Invalid login details")
+
+    def test_disabled_user_login(self):
+        user = User.objects.create_user(username="disableduser", password="pass123")
+        user.is_active = False
+        user.save()
+
+        response = self.client.post(reverse("recipes:login"), {"username": "disableduser", "password": "pass123"})
+        self.assertContains(response, "Account is disabled")
+        def test_search_selected_tags(self):
+            self.recipe.tag_set.add(self.tag)
+            response = self.client.post(reverse("recipes:search"), {
+                "selected_tags": ["Dessert"]
+            })
+            self.assertEqual(response.status_code, 200)
+            self.assertContains(response, "Test Recipe")
+
+    def test_delete_user_account(self):
+        response = self.client.post(reverse("recipes:delete_account"))
+        self.assertRedirects(response, reverse("recipes:index"))
+        self.assertFalse(User.objects.filter(username="testuser").exists())
+
+    def test_delete_recipe_non_post(self):
+        response = self.client.get(reverse("recipes:delete_recipe", args=[self.recipe.id]))
+        self.assertEqual(response.status_code, 405)
+
+    def test_update_recipe_image(self):
+        image = SimpleUploadedFile("test.jpg", b"image_content", content_type="image/jpeg")
+        url = reverse("recipes:update_recipe_image", args=[self.recipe.id])
+        response = self.client.post(url, {"image": image})
+        self.assertEqual(response.status_code, 302)
+
+    def test_add_duplicate_tag(self):
+        tag_name = "Dessert"
+        Tag.objects.get_or_create(name=tag_name)
+        response = self.client.post(reverse("recipes:add_tag"), {"name": tag_name})
+        self.assertContains(response, "Tag with this Name already exists.", status_code=200)
+
+    def test_add_tags_form_get(self):
+        url = reverse("recipes:add_tags", args=[self.recipe.id])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "name=\"new_tags\"")

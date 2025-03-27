@@ -9,6 +9,8 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseNotAllowed
 from django.db.models import Q
 from django.db.models import Count
+from django.contrib.auth import get_user_model
+
 
 
 def index(request):
@@ -106,11 +108,11 @@ def upload_recipe(request):
             recipe.user = request.user
             recipe.save()
 
-            # Add existing tags
+           
             for tag in form.cleaned_data["existing_tags"]:
                 tag.recipes.add(recipe)
 
-            # Add new tags
+    
             if form.cleaned_data["new_tags"]:
                 for tag_name in [
                     name.strip() for name in form.cleaned_data["new_tags"].split(",")
@@ -162,16 +164,21 @@ def user_login(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        user = authenticate(username=username, password=password)
 
-        if user:
-            if user.is_active:
-                login(request, user)
-                return redirect(reverse("recipes:index"))
-            else:
-                return HttpResponse("Account is disabled.")
-        else:
-            return HttpResponse("Invalid login details.")
+        User = get_user_model()
+        try:
+            user = User.objects.get(username=username)
+            if not user.check_password(password):
+                return render(request, "recipes/login.html", {"error_message": "Invalid login details"})
+
+            if not user.is_active:
+                return render(request, "recipes/login.html", {"error_message": "Account is disabled"})
+
+            login(request, user)
+            return redirect(reverse("recipes:index"))
+
+        except User.DoesNotExist:
+            return render(request, "recipes/login.html", {"error_message": "Invalid login details"})
     else:
         return render(request, "recipes/login.html")
 
@@ -235,7 +242,6 @@ def delete_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
     if request.method == "POST":
-        # Verify user owns the recipe
         if request.user != recipe.user:
             return HttpResponse("Unauthorized", status=401)
 
@@ -250,7 +256,7 @@ def delete_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
     if request.method == "POST":
-        # Verify user owns the recipe
+        
         if request.user != recipe.user:
             return HttpResponse("Unauthorized", status=401)
 
@@ -303,7 +309,7 @@ def add_tag(request):
                 tag.save()
                 return redirect(reverse("recipes:tag", args=[tag.name]))
             except Exception as e:
-                form.add_error("name", "This tag already exists!")
+                form.add_error("name", "tag with this Name already exists")
     else:
         form = AddTagForm()
     return render(request, "recipes/add_tag.html", {"form": form})
@@ -315,11 +321,11 @@ def add_tags(request, recipe_id):
     if request.method == "POST":
         form = AddTagsForm(request.POST)
         if form.is_valid():
-            # Add existing tags
+            
             for tag in form.cleaned_data["existing_tags"]:
                 tag.recipes.add(recipe)
 
-            # Add new tags
+           
             if form.cleaned_data["new_tags"]:
                 for tag_name in [
                     name.strip() for name in form.cleaned_data["new_tags"].split(",")
