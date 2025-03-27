@@ -41,17 +41,62 @@ FlavorFolio is powered by:
 
 ## Development
 
-### Project setup
+### Prerequisites
+
+- Python 3.x
+- pip (Python package manager)
+- Git
+
+### Project Setup
 
 1. Clone the repository:
 
 ```bash
 git clone https://github.com/MySTerY1747/FlavorFolio
+cd FlavorFolio
 ```
 
-2. Make your changes
+2. Create and activate a virtual environment (recommended):
 
-3. Add, commit, and push your changes:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+```
+
+3. Install required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Database Setup
+
+1. Initialize the database:
+
+```bash
+python manage.py makemigrations recipes
+python manage.py migrate
+```
+
+2. Populate initial data:
+
+```bash
+python population_script.py
+```
+
+3. Optinally create a superuser for admin access:
+
+```bash
+python manage.py createsuperuser
+```
+
+- Access the admin panel at `http://127.0.0.1:8000/admin/`
+
+### Development Workflow
+
+1. Make your changes to the code
+
+2. Add, commit, and push your changes:
 
 ```bash
 git add .
@@ -59,39 +104,8 @@ git commit -m "Your commit message"
 git push
 ```
 
-4. Periodically pull changes from the main branch:
+3. Periodically pull changes from the main branch:
 
 ```bash
 git pull origin main
 ```
-
-### Requirements
-
-To install the required packages, run the following command:
-
-```bash
-pip install -r requirements.txt
-```
-
-### Database setup
-
-- To setup the database, run the following commands:
-
-```bash
-python manage.py makemigrations recipes
-python manage.py migrate
-```
-
-- Then use the auto-populate script to populate the database with some initial data:
-
-```bash
-python population_script.py
-```
-
-- Consider adding a superuser to access the Django admin panel:
-
-```bash
-python manage.py createsuperuser
-```
-
-- You can then access the admin panel at `http://127.0.0.1:8000/admin/`
