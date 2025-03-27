@@ -8,6 +8,7 @@ from recipes.forms import *
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseNotAllowed
 from django.db.models import Q
+from django.db.models import Count
 
 
 def index(request):
@@ -182,22 +183,29 @@ def user_login(request):
 
 def search(request):
     search_query = " ".join(request.GET.get("search_query", "").split())
-    selected_tags = request.GET.getlist("tags")
+    selected_tags = [tag.strip().title() for tag in request.GET.getlist("tags")]
 
-    results = Recipe.objects.all().prefetch_related('tag_set')
-    
+    results = Recipe.objects.all().prefetch_related("tag_set")
+
+    # Search query filtering
     if search_query:
         results = results.filter(
-            Q(title__icontains=search_query) | 
-            Q(tag__name__icontains=search_query)
-        )
-    
+            Q(title__icontains=search_query) | Q(tag__name__icontains=search_query)
+        ).distinct()
+
+    # Tag filtering - require ALL selected tags
     if selected_tags:
-       
-        for tag_name in selected_tags:
-            results = results.filter(tag__name__in=selected_tags)
-        
-    results = results.distinct()
+        # Create a Q object for each tag and chain them with AND
+        for tag in selected_tags:
+            results = results.filter(tag__name=tag)
+
+        # Ensure distinct results after multiple filters
+        results = results.distinct()
+
+    # Get popular tags with recipe counts
+    popular_tags = Tag.objects.annotate(num_recipes=Count("recipes")).order_by(
+        "-num_recipes"
+    )
 
     return render(
         request,
@@ -205,9 +213,9 @@ def search(request):
         {
             "results": [(r, r.tag_set.all()) for r in results],
             "search_query": search_query,
-            "all_tags": Tag.objects.all(),
+            "all_tags": popular_tags,
             "selected_tags": selected_tags,
-        }
+        },
     )
 
 
