@@ -3,6 +3,8 @@
 _"Where Culinary Creativity Meets Community Connection"_  
 
 ## 🚀 About FlavorFolio  
+
+See the live version at [FlavorFolio](https://stefanosmyt.pythonanywhere.com/)
   
 FlavorFolio is a sleek, user-friendly, and community-driven platform where food lovers can explore, share, and connect through recipes. Whether you're a home cook or a seasoned chef, FlavorFolio makes it easy to discover new dishes, showcase your culinary creations, and engage with a vibrant community.  
   
